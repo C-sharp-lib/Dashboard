@@ -1,0 +1,217 @@
+﻿@model Dash.Areas.Identity.Models.RegisterViewModel
+@{
+    Layout = "_Layout";
+}
+
+
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-6 offset-md-3">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h1 class="text-gradient text-primary ubuntu-bold">Register</h1>
+                <a class="btn bg-gradient-warning text-white ubuntu-bold" asp-action="Login" asp-controller="Identity" asp-area="Identity">Go To Login Page Instead</a>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Register" asp-controller="Identity" asp-area="Identity" method="post"
+                      enctype="multipart/form-data">
+                    <div asp-validation-summary="All" class="validation-summary"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h6 class="text-gradient text-info ubuntu-bold">Image Preview</h6>
+                            <img id="previewImage" src="" alt="Image Preview"
+                                 style="max-width: 350px; display: none; margin-top: 10px; height: 400px"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <input type="file" asp-for="ImageUrl" id="ImageUrl" style="display: none;"
+                                       accept="image/*">
+                                <label asp-for="ImageUrl" class="btn bg-gradient-dark custom-file-button">Choose
+                                    File</label>
+                                <span id="fileName" class="file-name text-warning ubuntu-bold">No file selected</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="FirstName" class="text-gradient text-primary ubuntu-bold">First
+                                    Name</label>
+                                <input type="text"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu"
+                                       asp-for="FirstName">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="MiddleName" class="text-gradient text-primary ubuntu-bold">Middle
+                                    Name</label>
+                                <input type="text"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu"
+                                       asp-for="MiddleName">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="LastName" class="text-gradient text-primary ubuntu-bold">Last
+                                    Name</label>
+                                <input type="text"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu"
+                                       asp-for="LastName">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DateOfBirth" class="ubuntu-bold text-gradient text-primary">Date of
+                                    Birth</label>
+                                <input asp-for="DateOfBirth" id="dob"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="DateOfHire" class="ubuntu-bold text-gradient text-primary">Date of
+                                    Hire</label>
+                                <input id="HireDate" asp-for="DateOfHire"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UserName"
+                                       class="text-gradient text-primary ubuntu-bold">Username</label>
+                                <input type="text"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu"
+                                       asp-for="UserName">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Email" class="text-gradient text-primary ubuntu-bold">Email</label>
+                                <input type="email"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu"
+                                       asp-for="Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <label asp-for="Address" class="text-gradient text-primary ubuntu-bold">Address</label>
+                                <input type="text"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu"
+                                       asp-for="Address">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <label asp-for="City" class="text-gradient text-primary ubuntu-bold">City</label>
+                                <input type="text"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu"
+                                       asp-for="City">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <label asp-for="State" class="text-gradient text-primary ubuntu-bold">State</label>
+                                <input type="text"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu"
+                                       asp-for="State">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <label asp-for="ZipCode" class="text-gradient text-primary ubuntu-bold">Zip Code</label>
+                                <input type="text"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu"
+                                       asp-for="ZipCode">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group password-container">
+                                <label asp-for="Password"
+                                       class="ubuntu-bold text-gradient text-primary">Password</label>
+                                <input id="Password" asp-for="Password"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold">
+                                <i class="fa-solid fa-eye-slash text-danger" id="togglePassword"></i>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group password-container">
+                                <label asp-for="ConfirmPassword"
+                                       class="ubuntu-bold text-gradient text-primary">Password</label>
+                                <input id="ConfirmPassword" asp-for="ConfirmPassword"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold">
+                                <i class="fa-solid fa-eye-slash text-danger" id="toggleConfirmPassword"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-3">
+                        <input type="submit" class="btn bg-gradient-info" value="Register">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        const togglePassword = document.getElementById('togglePassword');
+        const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+        document.getElementById('ImageUrl').onchange = function (event) {
+            let reader = new FileReader();
+            reader.onload = function () {
+                let output = document.getElementById('previewImage');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        };
+        document.getElementById('ImageUrl').addEventListener('change', function (event) {
+            let fileName = event.target.files.length > 0 ? event.target.files[0].name : "No file selected";
+            document.getElementById('fileName').textContent = fileName;
+        });
+        togglePassword.addEventListener("click", function () {
+            const passwordInput = document.getElementById("Password");
+            const type = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = type;
+            if (type === "password") {
+                togglePassword.classList.remove("fa-eye");
+                togglePassword.classList.remove("text-success");
+                togglePassword.classList.add("fa-eye-slash");
+                togglePassword.classList.add("text-danger");
+            } else {
+                togglePassword.classList.remove("fa-eye-slash");
+                togglePassword.classList.remove("text-danger");
+                togglePassword.classList.add("fa-eye");
+                togglePassword.classList.add("text-success");
+            }
+        });
+        toggleConfirmPassword.addEventListener("click", function () {
+            const passwordInput = document.getElementById("ConfirmPassword");
+            const type = passwordInput.type === "password" ? "text" : "password";
+            passwordInput.type = type;
+            if (type === "password") {
+                toggleConfirmPassword.classList.remove("fa-eye");
+                toggleConfirmPassword.classList.remove("text-success");
+                toggleConfirmPassword.classList.add("fa-eye-slash");
+                toggleConfirmPassword.classList.add("text-danger");
+            } else {
+                toggleConfirmPassword.classList.remove("fa-eye-slash");
+                toggleConfirmPassword.classList.remove("text-danger");
+                toggleConfirmPassword.classList.add("fa-eye");
+                toggleConfirmPassword.classList.add("text-success");
+            }
+        });
+
+    </script>
+}

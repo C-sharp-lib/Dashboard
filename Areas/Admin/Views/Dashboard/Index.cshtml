@@ -1,3 +1,122 @@
-﻿@{
+﻿
+@{
     Layout = "_Layout";
+    var users = ViewBag.users;
 }
+
+<div class="row mt-11 mb-3">
+    <div class="col-12 col-md-7">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark">
+                <h1 class="text-gradient text-primary ubuntu-bold">Users</h1>
+            </div>
+            <div class="card-body p-4">
+                <table class="table table-striped table-borderless table-hover table-responsive">
+                    <thead>
+                    <tr class="text-center">
+                        <th class="text-gradient text-info ubuntu-bold">ID</th>
+                        <th class="text-gradient text-info ubuntu-bold">Name</th>
+                        <th class="text-gradient text-info ubuntu-bold">Email</th>
+                        <th class="text-gradient text-info ubuntu-bold">UserName</th>
+                        <th class="text-gradient text-info ubuntu-bold">Phone Number</th>
+                        <th class="text-gradient text-info ubuntu-bold">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var user in users)
+                    {
+                        <tr class="text-center text-sm">
+                            <td class="text-white ubuntu">@user.Id</td>
+                            <td class="text-white ubuntu">
+                                @user.FirstName @user.MiddleName @user.LastName
+                            </td>
+                            <td class="text-white ubuntu">@user.Email</td>
+                            <td class="text-white ubuntu">@user.UserName</td>
+                            <td class="text-white ubuntu">@user?.PhoneNumber</td>
+                            <td>
+                                @Html.ActionLink("", "UserDetails", "Identity", new { id = user?.Id, area = "Identity" }, new { @class = "m-3 btn-tooltip fa-solid fa-list text-gradient text-info text-sm", title = $"View {user?.FirstName}'s Profile" })
+                                @Html.ActionLink("", "UpdateUser", "Identity", new { id = user?.Id, area = "Identity" }, new { @class = "m-3 btn-tooltip fa-solid fa-pen-to-square text-gradient text-primary text-sm", title = $"Edit {user?.FirstName}'s Profile" })
+                                @Html.ActionLink("", "DeleteUser", "Identity", new { id = user?.Id, area = "Identity" }, new { @class = "m-3 btn-tooltip fa-solid fa-trash text-gradient text-danger text-sm", title = $"Delete {user?.FirstName}" })
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<div class="col-12 col-md-5">
+    <div class="row mt-2 mb-2">
+        <div class="col-12 col-md-6 mt-1">
+
+            <div class="card card-stats bg-gradient-dark shadow-lg">
+                <div class="card-header bg-gradient-dark card-header-icon p-1">
+                    <div class="card-icon bg-gradient-info">
+                        <i class="fa-solid fa-shop text-white"></i>
+                    </div>
+                    <p class="card-category text-white me-3 ubuntu-bold">Users</p>
+                    <h3 class="card-title text-gradient text-info me-3 ubuntu-bold">
+                        <small>@ViewBag.userCount</small>
+                    </h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <!--            <i class="fa-solid fa-circle-exclamation text-gradient text-danger"></i>-->
+                        <!--            <a href="#">Get More Space...</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mt-1">
+            <div class="card card-stats bg-gradient-dark shadow-lg">
+                <div class="card-header bg-gradient-dark card-header-icon p-1">
+                    <div class="card-icon bg-gradient-success">
+                        <i class="fa-solid fa-bag-shopping text-white"></i>
+                    </div>
+                    <p class="card-category text-white me-3 ubuntu-bold">Customers</p>
+                    <h3 class="card-title text-gradient text-success me-3 ubuntu-bold">20</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <!--            <i class="fa-regular fa-calendar-days text-gradient text-primary"></i> Last 24 Hours-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 col-md-6 mt-1">
+            <div class="card card-stats bg-gradient-dark shadow-lg">
+                <div class="card-header bg-gradient-dark card-header-icon p-1">
+                    <div class="card-icon bg-gradient-warning">
+                        <i class="fa-solid fa-briefcase text-white"></i>
+                    </div>
+                    <p class="card-category text-white me-3 ubuntu-bold">Jobs</p>
+                    <h3 class="card-title text-gradient text-primary me-3 ubuntu-bold">345</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <!--            <i class="fa-solid fa-location-dot text-gradient text-success"></i> Tracked from Github-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mt-1">
+            <div class="card card-stats bg-gradient-dark shadow-lg">
+                <div class="card-header bg-gradient-dark card-header-icon p-1">
+                    <div class="card-icon bg-gradient-danger">
+                        <i class="fa-solid fa-users-rectangle text-white"></i>
+                    </div>
+                    <p class="card-category text-white me-3 ubuntu-bold">Orders</p>
+                    <h3 class="card-title me-3 text-gradient text-danger ubuntu-bold">238</h3>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <!--            <i class="fa-regular fa-pen-to-square text-gradient text-info"></i> Just Updated-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

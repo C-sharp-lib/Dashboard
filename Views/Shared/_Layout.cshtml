@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Dashboard</title>
+    <title>Financial Dashboard</title>
     <link rel="icon" href="~/img/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="~/assets/css/soft-design-system-pro.css">
@@ -18,10 +18,21 @@
     <nav
             class="navbar navbar-expand-lg bg-gradient-dark navbar-dark  blur blur-rounded top-0  z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
         <div class="container px-0">
-            <a class="navbar-brand font-weight-bolder ms-sm-3 text-white" href="" rel="tooltip"
-               title="Created By Kevin Stradtman" data-placement="bottom">
-                Dash <img src="~/img/logo.png" height="50" width="50" alt="Site Logo"/>
-            </a>
+            @if (ViewBag.user != null)
+            {
+                <a class="navbar-brand ubuntu-bold ms-sm-3 text-white " asp-action="Index" asp-controller="Dashboard" asp-area="Admin" rel="tooltip"
+                   title="Created By Kevin Stradtman" data-placement="bottom">
+                    Financial Dashboard - <span class="text-gradient text-success">@ViewBag.user.UserName</span> <img src="~/img/logo.png" height="50" width="50" alt="Site Logo"/>
+                </a>
+            }
+            else
+            {
+                <a class="navbar-brand ubuntu-bold ms-sm-3 text-white" asp-action="Index" asp-controller="Home" rel="tooltip"
+                   title="Created By Kevin Stradtman" data-placement="bottom">
+                     Financial Dashboard <img src="~/img/logo.png" height="50" width="50" alt="Site Logo"/>
+                </a>    
+            }
+            
             <button class="navbar-toggler shadow-none ms-md-2" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -50,7 +61,7 @@
                                 }
                             </ul>
                         </div>
-                        @*@if (ViewBag.user != null)
+                        @if (ViewBag.user != null)
                         {
                             <div class="dropdown m-3">
                                 <a class="btn bg-gradient-primary dropdown-toggle ubuntu-bold" id="dropdownAdmin"
@@ -58,10 +69,10 @@
                                     Admin
                                 </a>
                                 <ul class="dropdown-menu bg-gradient-dark" aria-labelledby="dropdownAdmin">
-                                    <li><a class="dropdown-item ubuntu-bold" asp-action="Index" asp-controller="Dashboard" asp-area="Admin">Admin Home</a></li>
+                                    <li><a class="dropdown-item ubuntu-bold" asp-action="Index" asp-controller="Dashboard" asp-area="Admin">Dashboard</a></li>
                                 </ul>
                             </div>
-                        }*@
+                        }
                     </div>
                 </div>
             </div>
@@ -80,7 +91,7 @@
         <div class=" row">
             <div class="col-md-12 mb-4 ms-auto">
                 <div>
-                    <h6 class="text-gradient text-primary ubuntu-bold">UserCRM</h6>
+                    <h6 class="text-gradient text-primary ubuntu-bold">Financial Dashboard</h6>
                 </div>
             </div>
         </div>

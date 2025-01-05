@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "z0VL7gfA3SNXgfVoWGzXik6W0C/FrdLf6Sb3rc5YmM4=",
+  "Hash": "Q0VVmXGbcfsvpezpO3bA+FaDXrINrXLiUIU/Q4Qv+tY=",
   "Source": "Dash",
   "BasePath": "_content/Dash",
   "Mode": "Default",
@@ -9926,6 +9926,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\Development\\MVC\\Dash\\Dash\\wwwroot\\Uploads\\AppUsers\\kevin-stradtman_35cf292b-cb64-4013-bf56-b46cf988e304.png",
+      "SourceId": "Dash",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Development\\MVC\\Dash\\Dash\\wwwroot\\",
+      "BasePath": "_content/Dash",
+      "RelativePath": "Uploads/AppUsers/kevin-stradtman_35cf292b-cb64-4013-bf56-b46cf988e304.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\AppUsers\\kevin-stradtman_35cf292b-cb64-4013-bf56-b46cf988e304.png"
     }
   ]
 }

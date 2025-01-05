@@ -2,6 +2,7 @@ using Dash.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Dash.Data;
+using Dash.Services;
 using Microsoft.Extensions.FileProviders;
 
 namespace Dash;
@@ -18,6 +19,7 @@ public class Program
         builder.Services.AddIdentityConfiguration();
         builder.Services.AddControllersWithViews();
         builder.Services.AddAppConfiguration();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

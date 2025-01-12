@@ -101,6 +101,12 @@ nav.navbar-expand-lg {
 .nav-link {
   cursor: pointer;
 }
+.nav-link.active {
+  border: 1px solid darkorange !important;
+}
+.nav.nav-tabs {
+  border-bottom: none;
+}
 /*  End Nav  */
 
 
@@ -712,8 +718,65 @@ td > a >.fa-regular.fa-trash-can {
   background-image: -moz-linear-gradient(90deg, rgb(22,22,22), rgb(80,80,80)) !important;
   background-image: -ms-linear-gradient(90deg, rgb(22,22,22), rgb(80,80,80)) !important;
 }
-
-#job-calendar {
+/*    START Calendar      */
+#calendar {
   width: 100%;
   height: auto;
 }
+.fc-toolbar-title {
+  font-family: "Ubuntu", serif !important;
+  color: limegreen !important;
+  font-weight: 700 !important;
+  font-size: 2rem !important;
+  text-align: center !important;
+}
+.text-shadow-btn {
+  text-shadow: 1px 2px 2px #222222;
+}
+
+.fc-resourceTimelineDay-button.fc-button.fc-button-primary,
+.fc-resourceTimelineThreeDays-button.fc-button.fc-button-primary,
+.fc-timeGridWeek-button.fc-button.fc-button-primary,
+.fc-dateGridWeek-button.fc-button.fc-button-primary,
+.fc-listWeek-button.fc-button.fc-button-primary {
+  background-image: linear-gradient(90deg, rgb(22,22,22), rgb(80,80,80)) !important;
+  background-image: -webkit-linear-gradient(90deg, rgb(22,22,22), rgb(80,80,80)) !important;
+  background-image: -moz-linear-gradient(90deg, rgb(22,22,22), rgb(80,80,80)) !important;
+  background-image: -ms-linear-gradient(90deg, rgb(22,22,22), rgb(80,80,80)) !important;
+  color: limegreen !important;
+  font-family: "Ubuntu", serif !important;
+  font-weight: 500 !important;
+}
+.fc-button-primary:hover {
+  background-image: linear-gradient(90deg, indigo, rgb(0, 0, 200)) !important;
+  background-image: -webkit-linear-gradient(90deg, indigo, rgb(0, 0, 200)) !important;
+  background-image: -moz-linear-gradient(90deg, indigo, rgb(0, 0, 200)) !important;
+  background-image: -ms-linear-gradient(90deg, indigo, rgb(0, 0, 200)) !important;
+  font-family: "Ubuntu", serif !important;
+  color: white !important;
+  font-weight: 700 !important;
+  transition-duration: 0.6s !important;
+  transition-timing-function: ease-in-out !important;
+  transition: all !important;
+}
+.fc-button-primary:active {
+  background-image: linear-gradient(90deg, indigo, rgb(0, 0, 200)) !important;
+  background-image: -webkit-linear-gradient(90deg, indigo, rgb(0, 0, 200)) !important;
+  background-image: -moz-linear-gradient(90deg, indigo, rgb(0, 0, 200)) !important;
+  background-image: -ms-linear-gradient(90deg, indigo, rgb(0, 0, 200)) !important;
+  font-family: "Ubuntu", serif !important;
+  color: white !important;
+  font-weight: 700 !important; 
+}
+.fc-event {
+  height: 20px !important;
+}
+.fc-event > .fc-event-main > .fc-event-main-frame > .fc-event-title-container > .fc-event-title {
+  position: relative !important;
+  bottom: 10% !important;
+  font-family: "Ubuntu", serif !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+}
+/*     END Calendar     */
+

@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Dash.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,8 +19,13 @@ public class Program
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
         builder.Services.AddIdentityConfiguration();
         builder.Services.AddControllersWithViews();
+        builder.Services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase; // Custom setting
+        });
         builder.Services.AddAppConfiguration();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
+        builder.Services.AddScoped<IEventRepository, EventRepository>();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

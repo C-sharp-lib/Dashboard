@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Dash.Areas.Admin.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace Dash.Areas.Identity.Models;
@@ -22,4 +23,5 @@ public class AppUser : IdentityUser
     public string? State { get; set; }
     public string? ZipCode { get; set; }
     public IEnumerable<UserSchedules> UserSchedules { get; set; }
+    public IEnumerable<UserEvents> UserEvents { get; set; }
 }

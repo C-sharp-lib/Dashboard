@@ -1,0 +1,28 @@
+        @*document.addEventListener('DOMContentLoaded', function() {
+            let calendarEl = document.getElementById('calendar');
+            let calendar = new FullCalendar.Calendar(calendarEl, {
+                now: Date.now(),
+                scrollTime: '00:00',
+                editable: true,
+                selectable: true,
+                aspectRatio: 1.8,
+                headerToolbar: {
+                    left: 'today prev,next',
+                    center: 'title',
+                    right: 'resourceTimelineDay,resourceTimelineThreeDays,timeGridWeek,dayGridMonth,listWeek'
+                },
+                initialView: 'dayGridMonth',
+                views: {
+                    resourceTimelineThreeDays: {
+                        type: 'resourceTimeline',
+                        duration: { days: 3 },
+                        buttonText: '3 days'
+                    },
+                    dayGridMonth: {
+                        titleFormat: {month: 'long'}
+                    }
+                },
+
+            });
+            calendar.render();
+        });*@

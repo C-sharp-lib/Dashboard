@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Dash.Areas.Admin.Models.Event>
+@{}
+
+
+<table class="table table-striped table-borderless table-hover table-responsive table-responsive-sm table-responsive-md table-responsive-lg">
+    <thead>
+    <tr class="text-center">
+        <th class="text-gradient text-info ubuntu-bold">ID</th>
+        <th class="text-gradient text-info ubuntu-bold">Title</th>
+        <th class="text-gradient text-info ubuntu-bold">Description</th>
+        <th class="text-gradient text-info ubuntu-bold">Color</th>
+        <th class="text-gradient text-info ubuntu-bold">Time Frame</th>
+        <th class="text-gradient text-info ubuntu-bold">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var events in Model)
+    {
+        <tr class="text-center text-sm">
+            <td class="text-white ubuntu">@events.EventId</td>
+            <td class="text-white ubuntu">@events.TruncateWords(events.Title, 3)</td>
+            <td class="text-white ubuntu">@events.TruncateWords(events.Description, 3)</td>
+            <td class="text-white ubuntu">@events.Color</td>
+            <td class="text-white ubuntu">@events.StartDate.ToString("d") - @events.EndDate.ToString("d")</td>
+            <td>
+                @Html.ActionLink("", "UserEventDetails", "Dashboard", new { id = events.EventId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-list text-gradient text-info text-sm", title = $"View {events.Title}" })
+                @Html.ActionLink("", "UpdateEvent", "Dashboard", new { id = events.EventId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-pen-to-square text-gradient text-primary text-sm", title = $"Edit {events.Title}" })
+                @Html.ActionLink("", "DeleteUserEvent", "Dashboard", new { id = events.EventId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-trash text-gradient text-danger text-sm", title = $"Delete {events.Title}" })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

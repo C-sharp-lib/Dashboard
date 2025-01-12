@@ -1,3 +1,4 @@
+
 Vue.config.devtools = true;
 
 Vue.component('card', {

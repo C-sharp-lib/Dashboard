@@ -23,7 +23,10 @@ public class UserRepository : Repository<AppUser>, IUserRepository
 
     public async Task<IEnumerable<AppUser>> GetAllUsersAsync()
     {
-        return await _dbSet.ToListAsync();
+        return await _dbSet
+            .Include(u => u.UserEvents)
+            .ThenInclude(ue => ue.Event)
+            .ToListAsync();
     }
 
     public async Task<AppUser> GetUserByIdAsync(string id)

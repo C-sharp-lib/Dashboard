@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Dash.Areas.Identity.Models.AppUser>
+@{ }
+
+
+<table class="table table-striped table-borderless table-hover table-responsive table-responsive-sm table-responsive-md table-responsive-lg">
+    <thead>
+    <tr class="text-center">
+        <th class="text-gradient text-info ubuntu-bold">Date of Hire</th>
+        <th class="text-gradient text-info ubuntu-bold">Date of Birth</th>
+        <th class="text-gradient text-info ubuntu-bold">Name</th>
+        <th class="text-gradient text-info ubuntu-bold">Email</th>
+        <th class="text-gradient text-info ubuntu-bold">UserName</th>
+        <th class="text-gradient text-info ubuntu-bold">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr class="text-center text-sm">
+            <td class="text-white ubuntu">@String.Format("{0:MM/dd/yyyy}", user.DateOfHire)</td>
+            <td class="text-white ubuntu">@String.Format("{0:MM/dd/yyyy}", user.DateOfBirth)</td>
+            <td class="text-white ubuntu">
+                @user.FirstName @user.MiddleName @user.LastName
+            </td>
+            <td class="text-white ubuntu">@user.Email</td>
+            <td class="text-white ubuntu">@user.UserName</td>
+            <td>
+                @Html.ActionLink("", "UserDetails", "Identity", new { id = user?.Id, area = "Identity" }, new { @class = "m-3 btn-tooltip fa-solid fa-list text-gradient text-info text-sm", title = $"View {user?.FirstName}'s Profile" })
+                @Html.ActionLink("", "UpdateUser", "Identity", new { id = user?.Id, area = "Identity" }, new { @class = "m-3 btn-tooltip fa-solid fa-pen-to-square text-gradient text-primary text-sm", title = $"Edit {user?.FirstName}'s Profile" })
+                @Html.ActionLink("", "DeleteUser", "Identity", new { id = user?.Id, area = "Identity" }, new { @class = "m-3 btn-tooltip fa-solid fa-trash text-gradient text-danger text-sm", title = $"Delete {user?.FirstName}" })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

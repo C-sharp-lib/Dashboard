@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
         <PackageReference Include="EntityFrameworkCore.Data.Repository" Version="6.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.33"/>
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.33"/>
@@ -27,9 +28,9 @@
 
     <ItemGroup>
       <Folder Include="Areas\Admin\Views\Shared\" />
+      <Folder Include="Areas\Admin\Views\Shared\_Partials\" />
       <Folder Include="Areas\Admin\wwwroot\img\" />
       <Folder Include="Areas\Admin\wwwroot\js\" />
-      <Folder Include="Areas\Identity\Views\Shared\" />
       <Folder Include="Areas\Identity\wwwroot\img\" />
       <Folder Include="Areas\Identity\wwwroot\js\" />
       <Folder Include="wwwroot\Uploads\AppUsers\" />

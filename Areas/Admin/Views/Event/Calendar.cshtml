@@ -1,0 +1,139 @@
+﻿@using Dash.Areas.Admin.Models
+@model Dash.Areas.Admin.Models.IndexViewModel
+@{
+    Layout = "_Layout";
+}
+
+<div class="row mt-7 mb-7 p-7">
+    <div class="col-12 col-md-12 col-lg-12">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h1 class="text-gradient text-primary ubuntu-bold">Schedule</h1>
+                <a class="btn bg-gradient-info ubuntu-bold" asp-action="AddEventPage" asp-controller="Dashboard" asp-area="Admin">Add Event</a>
+            </div>
+            <div class="card-body p-4">
+                <div id='calendar'></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade bg-opacity-50" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient-dark">
+                <h5 class="modal-title text-gradient text-success ubuntu-bold" id="eventModalLabel">Event Details</h5>
+                <button type="button" class="btn-close" style="color: #880000 !important; font-family: 'Ubuntu', sans-serif; font-weight: bold;" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body bg-gradient-dark p-3">
+                <form id="eventForm" class="form" asp-action="UpdateEvents" asp-controller="Dashboard" asp-area="Admin" method="post">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="EventId" id="EventId">
+                    <div class="form-group">
+                        <label for="Title" class="form-label text-gradient text-info ubuntu-bold">Title</label>
+                        <input name="Title" type="text" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Description" class="form-label text-gradient text-info ubuntu-bold">Description</label>
+                        <textarea name="Description" cols="10" rows="5" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="StartDate" class="form-label text-gradient text-info ubuntu-bold">Start Date</label>
+                        <input type="datetime-local" name="StartDate" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu datepicker" id="StartDate" />
+                    </div>
+                    <div class="form-group">
+                        <label for="EndDate" class="form-label text-gradient text-info ubuntu-bold">End Date</label>
+                        <input type="datetime-local" name="EndDate" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu datepicker" id="EndDate" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Color" class="form-label text-gradient text-info ubuntu-bold">Background Color</label>
+                        <input name="Color" class="form-control color-background bg-gradient-dark" type="color" id="Color">
+                    </div>
+                    <div class="form-group">
+                        <label for="ForegroundColor" class="form-label text-gradient text-info ubuntu-bold">Foreground Color</label>
+                        <input name="ForegroundColor" class="form-control color-background bg-gradient-dark" type="color" id="ForegroundColor">
+                    </div>
+                    <div class="modal-footer mt-3 mb-3">
+                        <button type="submit" class="btn btn-primary" id="saveEventBtn">Save Event</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let calendarEl = document.getElementById('calendar');
+
+            let calendar = new FullCalendar.Calendar(calendarEl, {
+                now: Date.now(),
+                scrollTime: '00:00',
+                editable: true,
+                selectable: true,
+                aspectRatio: 1.8,
+                headerToolbar: {
+                    left: 'today prev,next',
+                    center: 'title',
+                    right: 'resourceTimelineDay,resourceTimelineThreeDays,timeGridWeek,dayGridMonth,listWeek'
+                },
+                initialView: 'dayGridMonth',
+                views: {
+                    resourceTimelineThreeDays: {
+                        type: 'resourceTimeline',
+                        duration: { days: 3 },
+                        buttonText: '3 days'
+                    },
+                    dayGridMonth: {
+                        titleFormat: {month: 'long'}
+                    }
+                },
+                events: [
+                    @foreach (var e in Model.Events)
+                    {
+                        <text>
+                            {
+                                id: '@e.EventId',
+                                title: '@e.Title',
+                                start: '@e.StartDate.ToString("yyyy-MM-ddTHH:mm:ss")',
+                                end: '@e.EndDate.ToString("yyyy-MM-ddTHH:mm:ss")',
+                                description: '@e.Description',
+                                backgroundColor: '@e.Color',
+                                textColor: '@e.ForegroundColor'
+                            },
+                        </text>
+                    }
+
+                ],
+                droppable: true,
+
+                // Create event on date click
+                dateClick: function(info) {
+                    // Open modal for new event
+                    document.getElementById('eventForm').reset();
+                    document.getElementById('StartDate').value = info.dateStr;
+                    document.getElementById('EndDate').value = info.dateStr;
+                    let modal = new bootstrap.Modal(document.getElementById('eventModal'));
+                    modal.show();
+                },
+                eventClick: function(info) {
+                    // Open modal for editing event
+                    document.getElementById('EventId').value = info.event.id;
+                    document.getElementById('Title').value = info.event.title;
+                    document.getElementById('Description').value = info.event.extendedProps.description;
+                    document.getElementById('StartDate').value = info.event.start.toISOString().slice(0, 16);
+                    document.getElementById('EndDate').value = info.event.end.toISOString().slice(0, 16);
+                    document.getElementById('Color').value = info.event.backgroundColor;
+                    document.getElementById('ForegroundColor').value = info.event.textColor;
+                    let modal = new bootstrap.Modal(document.getElementById('eventModal'));
+                    modal.show();
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+}

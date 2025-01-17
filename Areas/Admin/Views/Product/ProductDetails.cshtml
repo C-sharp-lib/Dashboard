@@ -1,0 +1,74 @@
+﻿@model Dash.Areas.Admin.Models.Products
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-6">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="page-header min-vh-45 rounded"
+                 style="background-image: url(@Url.Content($"~/{Model.ImageUrl}")); background-position: center; background-size: cover; background-repeat: no-repeat;">
+                <div class="container">
+                    <div class="row justify-content-center">
+                    </div>
+                </div>
+                <div class="position-absolute w-100 z-index-1 bottom-0">
+                    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+                        <defs>
+                            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"/>
+                        </defs>
+                        <g class="moving-waves">
+                            <use xlink:href="#gentle-wave" x="48" y="-1" fill="rgba(55,55,55,0.40"/>
+                            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(55,55,55,0.35)"/>
+                            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(55,55,55,0.25)"/>
+                            <use xlink:href="#gentle-wave" x="48" y="8" fill="rgba(55,55,55,0.20)"/>
+                            <use xlink:href="#gentle-wave" x="48" y="13" fill="rgba(55,55,55,0.15)"/>
+                            <use xlink:href="#gentle-wave" x="48" y="16" fill="rgba(55,55,55,1)"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h3 class="text-gradient text-info ubuntu-bold">@Model.Name</h3>
+                <div class="btn-group m-3">
+                    <a class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip" asp-action="Index" asp-controller="Product" asp-area="Admin" title="Go back to the product list"><i class="fa-solid fa-backward-step"></i></a>
+                    <a class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip" asp-action="UpdateProductPage" asp-controller="Product" asp-area="Admin" asp-route-id="@Model?.ProductId" title="Edit @Model?.Name"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" asp-action="DeleteProduct" asp-controller="Product" asp-route-id="@Model?.ProductId" asp-area="Admin" title="Delete @Model?.Name"><i class="fa-solid fa-trash"></i></a>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h3 class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Name</span> 
+                    @Model.Name
+                </h3>
+                <h6 class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">ID - UPC</span>
+                    ID: @Model.ProductId | UPC: @Model.UPC
+                </h6>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Category</span>
+                    @Model.Category
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Price</span>
+                    @Model.Price.ToString("C") | Currency: @Model.Currency
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Quantity</span>
+                    @Model.QuantityInStock
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Description</span>
+                    @Model.Description
+                </p>
+            </div>
+            </div>
+        </div>
+</div>
+</div>

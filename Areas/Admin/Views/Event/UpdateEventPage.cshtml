@@ -10,8 +10,8 @@
             <div class="card-header bg-gradient-dark">
                 <h1 class="text-gradient text-primary ubuntu-bold">Update Event</h1>
             </div>
-            <div class="card-body p-3">
-                <form id="eventForm" class="form" asp-action="UpdateEvents" asp-controller="Dashboard" asp-route-id="@eve.EventId" asp-area="Admin" method="post">
+            <div class="card-body p-5">
+                <form id="eventForm" class="form" asp-action="UpdateEventsById" asp-controller="Event" asp-route-id="@eve.EventId" asp-area="Admin" method="post">
                     <div class="row">
                         <div class="col-12 col-md-8 offset-md-2">
                             <div asp-validation-summary="All" class="text-danger ubuntu-bold list-no-style"></div>
@@ -38,7 +38,13 @@
                         <label asp-for="Color" class="form-label text-gradient text-info ubuntu-bold">Color</label>
                         <input asp-for="Color" class="form-control color-background bg-gradient-dark" type="color" value="@eve.Color" id="Color">
                     </div>
-                    <button type="submit" class="btn btn-primary" id="saveEventBtn">Save Event</button>
+                    <div class="form-group">
+                        <label asp-for="ForegroundColor" class="form-label text-gradient text-info ubuntu-bold">Color</label>
+                        <input asp-for="ForegroundColor" class="form-control color-background bg-gradient-dark" type="color" value="@eve.ForegroundColor" id="ForegroundColor">
+                    </div>
+                    <div class="card-footer m-3">
+                        <button type="submit" class="btn btn-primary" id="saveEventBtn">Save Event</button>
+                    </div>
                 </form>
             </div>
         </div>

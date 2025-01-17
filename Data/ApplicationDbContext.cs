@@ -17,6 +17,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<UserSchedules> UserSchedules { get; set; }
     public DbSet<Event> Events { get; set; }
     public DbSet<UserEvents> UserEvents { get; set; }
+    public DbSet<Products> Products { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -26,6 +27,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         builder.Entity<Event>().HasKey(x => x.EventId);
         builder.Entity<UserEvents>().HasKey(x => new { x.UserId, x.EventId, x.UserEventId });
         builder.Entity<UserSchedules>().HasKey(x => new { x.UserId, x.ScheduleId, x.UserScheduleId });
+        builder.Entity<Products>().HasKey(p => p.ProductId);
         builder.Entity<UserSchedules>()
             .HasOne(x => x.Schedule)
             .WithMany(x => x.UserSchedules)

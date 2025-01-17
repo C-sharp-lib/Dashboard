@@ -1,16 +1,15 @@
 ﻿@using Dash.Areas.Identity.Models
 @using Dash.Areas.Admin.Models
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
 @model Dash.Areas.Admin.Models.IndexViewModel
 @{
     Layout = "_Layout";
     AppUser activeUser = ViewBag.user;
-    IEnumerable<Event> events = Model.Events;
-    IEnumerable<AppUser> users = Model.Users;
 }
 
 <div class="row mt-11 mb-3" xmlns="">
     <div class="col-12 col-md-12 col-lg-7">
-        <div class="card shadow-lg bg-gradient-dark">
+        @*<div class="card shadow-lg bg-gradient-dark">
             <div class="card-header bg-gradient-dark">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -19,20 +18,25 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link ubuntu-bold text-gradient text-warning bg-gradient-dark tab-styles" id="events-tab" data-bs-toggle="tab" data-bs-target="#events-tab-pane" type="button" role="tab" aria-controls="events-tab-pane" aria-selected="false">Events</button>
                     </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link ubuntu-bold text-gradient text-warning bg-gradient-dark tab-styles" id="products-tab" data-bs-toggle="tab" data-bs-target="#products-tab-pane" type="button" role="tab" aria-controls="products-tab-pane" aria-selected="false">Products</button>
+                    </li>
                 </ul>
             </div>
             <div class="card-body p-4">
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="users-tab-pane" role="tabpanel" aria-labelledby="users-tab" tabindex="0">
-                        @await Html.PartialAsync("_Partials/_users-list", users)
+                        @await Html.PartialAsync("_Partials/_users-list", Model.Users)
                     </div>
                     <div class="tab-pane fade" id="events-tab-pane" role="tabpanel" aria-labelledby="events-tab" tabindex="0">
-                        @await Html.PartialAsync("_Partials/_events-list", events)
+                        @await Html.PartialAsync("_Partials/_events-list", Model.Events)
+                    </div>
+                    <div class="tab-pane fade" id="products-tab-pane" role="tabpanel" aria-labelledby="products-tab" tabindex="0">
+                        @await Html.PartialAsync("_Partials/_products-list", Model.Products)
                     </div>
                 </div>
-                
             </div>
-        </div>
+        </div>*@
     </div>
     <div class="col-12 col-md-12 col-lg-5">
         <div class="row mt-2 mb-2">
@@ -62,8 +66,8 @@
                         <div class="card-icon bg-gradient-success">
                             <i class="fa-solid fa-bag-shopping text-white"></i>
                         </div>
-                        <p class="card-category text-white me-3 ubuntu-bold">Customers</p>
-                        <h3 class="card-title text-gradient text-success me-3 ubuntu-bold">20</h3>
+                        <p class="card-category text-white me-3 ubuntu-bold">Products</p>
+                        <h3 class="card-title text-gradient text-success me-3 ubuntu-bold">@Model.ProductCount</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -109,18 +113,8 @@
         </div>
     </div>
 </div>
+
 <div class="row mt-3 mb-11">
-    <div class="col-12 col-md-12 col-lg-7">
-        <div class="card shadow-lg bg-gradient-dark mt-5">
-            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
-                <h1 class="text-gradient text-primary ubuntu-bold">Schedule</h1>
-                <a class="btn bg-gradient-info ubuntu-bold" asp-action="AddEventPage" asp-controller="Dashboard" asp-area="Admin">Add Event</a>
-            </div>
-            <div class="card-body p-3">
-                <div id='calendar'></div>
-            </div>
-        </div>
-    </div>
     <div class="col-12 col-md-12 col-lg-5">
         <div class="card shadow-lg bg-gradient-dark z-index-2">
             <div class="card-header p-3 pb-0 bg-gradient-dark">
@@ -133,60 +127,30 @@
             </div>
         </div>
     </div>
-</div>
-
-
-
-<div class="modal fade bg-opacity-50" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-gradient-dark">
-                <h5 class="modal-title text-gradient text-success ubuntu-bold" id="eventModalLabel">Event Details</h5>
-                <button type="button" class="btn-close" style="color: #880000 !important; font-family: 'Ubuntu', sans-serif; font-weight: bold;" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="col-12 col-md-12 col-lg-7">
+        <div class="card shadow-lg bg-gradient-dark z-index-2">
+            <div class="card-header p-3 pb-0 bg-gradient-dark">
+                <h6 class="text-gradient text-info ubuntu-bold">Company Unit Numbers</h6>
             </div>
-            <div class="modal-body bg-gradient-dark p-3">
-                <form id="eventForm" class="form" asp-action="UpdateEvents" asp-controller="Dashboard" asp-area="Admin" method="post">
-                    <input type="hidden" name="_method" value="PUT">
-                    <input type="hidden" name="EventId" id="EventId">
-                    <div class="form-group">
-                        <label for="Title" class="form-label text-gradient text-info ubuntu-bold">Title</label>
-                        <input name="Title" type="text" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Title" />
-                    </div>
-                    <div class="form-group">
-                        <label for="Description" class="form-label text-gradient text-info ubuntu-bold">Description</label>
-                        <textarea name="Description" cols="10" rows="5" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="StartDate" class="form-label text-gradient text-info ubuntu-bold">Start Date</label>
-                        <input type="datetime-local" name="StartDate" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu datepicker" id="StartDate" />
-                    </div>
-                    <div class="form-group">
-                        <label for="EndDate" class="form-label text-gradient text-info ubuntu-bold">End Date</label>
-                        <input type="datetime-local" name="EndDate" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu datepicker" id="EndDate" />
-                    </div>
-                    <div class="form-group">
-                        <label for="Color" class="form-label text-gradient text-info ubuntu-bold">Background Color</label>
-                        <input name="Color" class="form-control color-background bg-gradient-dark" type="color" id="Color">
-                    </div>
-                    <div class="form-group">
-                        <label for="ForegroundColor" class="form-label text-gradient text-info ubuntu-bold">Foreground Color</label>
-                        <input name="ForegroundColor" class="form-control color-background bg-gradient-dark" type="color" id="ForegroundColor">
-                    </div>
-                    <div class="modal-footer mt-3 mb-3">
-                        <button type="submit" class="btn btn-primary" id="saveEventBtn">Save Event</button>
-                    </div>
-                </form>
+            <div class="card-body p-3">
+                <div class="chart">
+                    <canvas id="bar-chart" class="chart-canvas" height="300"></canvas>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
+
+
+
+
 @section Scripts {
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
             let ctx2 = document.getElementById("line-chart-gradient").getContext("2d");
-
+            let ctx3 = document.getElementById('bar-chart').getContext("2d");
             let gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
 
             gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
@@ -235,7 +199,7 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            display: false,
+                            display: true,
                         }
                     },
                     interaction: {
@@ -286,75 +250,35 @@
                     },
                 },
             });
-        });
-        document.addEventListener('DOMContentLoaded', function () {
-            let calendarEl = document.getElementById('calendar');
 
-            let calendar = new FullCalendar.Calendar(calendarEl, {
-                now: Date.now(),
-                scrollTime: '00:00',
-                editable: true,
-                selectable: true,
-                aspectRatio: 1.8,
-                headerToolbar: {
-                    left: 'today prev,next',
-                    center: 'title',
-                    right: 'resourceTimelineDay,resourceTimelineThreeDays,timeGridWeek,dayGridMonth,listWeek'
-                },
-                initialView: 'dayGridMonth',
-                views: {
-                    resourceTimelineThreeDays: {
-                        type: 'resourceTimeline',
-                        duration: { days: 3 },
-                        buttonText: '3 days'
-                    },
-                    dayGridMonth: {
-                        titleFormat: {month: 'long'}
-                    }
-                },
-                events: [
-                        @foreach (var e in Model.Events)
+    
+            new Chart(ctx3, {
+                type: "bar",
+                data: {
+                    labels: ['Users', 'Events', 'Products'],
+                    datasets: [
                         {
-                            <text>
-                            {
-                                id: '@e.EventId',
-                                title: '@e.Title',
-                                start: '@e.StartDate.ToString("yyyy-MM-ddTHH:mm:ss")',
-                                end: '@e.EndDate.ToString("yyyy-MM-ddTHH:mm:ss")',
-                                description: '@e.Description',
-                                backgroundColor: '@e.Color',
-                                textColor: '@e.ForegroundColor'
-                            },
-                            </text>
+                            data: [@Model.UserCount, @Model.EventCount, @Model.ProductCount],
+                            borderColor: ['#fd2345', 'rgba(50,205,50,1)', 'rgba(50,50,250,1)'],
+                            backgroundColor: ['rgba(75,0,130,0.8)', 'rgba(102,192,55,0.8)', 'rgba(50,50,250,0.8)']
                         }
-            
-                ],
-                droppable: true,
-
-                // Create event on date click
-                dateClick: function(info) {
-                    // Open modal for new event
-                    document.getElementById('eventForm').reset();
-                    document.getElementById('StartDate').value = info.dateStr;
-                    document.getElementById('EndDate').value = info.dateStr;
-                    let modal = new bootstrap.Modal(document.getElementById('eventModal'));
-                    modal.show();
+                    ],
                 },
-                eventClick: function(info) {
-                    // Open modal for editing event
-                    document.getElementById('EventId').value = info.event.id;
-                    document.getElementById('Title').value = info.event.title;
-                    document.getElementById('Description').value = info.event.extendedProps.description;
-                    document.getElementById('StartDate').value = info.event.start.toISOString().slice(0, 16);
-                    document.getElementById('EndDate').value = info.event.end.toISOString().slice(0, 16);
-                    document.getElementById('Color').value = info.event.backgroundColor;
-                    document.getElementById('ForegroundColor').value = info.event.textColor;
-                    let modal = new bootstrap.Modal(document.getElementById('eventModal'));
-                    modal.show();
+                options: {
+                    plugins: {
+                        legend: {
+                            display: true
+                        }
+                    },
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
                 }
             });
-
-            calendar.render();
-            });
+        });
+        
 </script>
 }

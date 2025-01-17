@@ -1,4 +1,3 @@
-
 Vue.config.devtools = true;
 
 Vue.component('card', {
@@ -14,6 +13,7 @@ Vue.component('card', {
         <div class="card-info">
           <slot name="header"></slot>
           <slot name="content"></slot>
+          <slot name="footer"></slot>
         </div>
       </div>
     </div>`,
@@ -72,6 +72,6 @@ Vue.component('card', {
         } } });
 
 
-
+const appElement = document.querySelector('.app');
 const app = new Vue({
-    el: '#app' });
+    el: appElement });

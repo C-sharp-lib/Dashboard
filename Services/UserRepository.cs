@@ -117,7 +117,7 @@ public class UserRepository : Repository<AppUser>, IUserRepository
         userToUpdate.State = user.State;
         userToUpdate.ZipCode = user.ZipCode;
         userToUpdate.PhoneNumberConfirmed = true;
-        _dbSet.Update(userToUpdate);
+        await _userManager.UpdateAsync(userToUpdate);
         await _context.SaveChangesAsync();
     }
 

@@ -1,4 +1,5 @@
-﻿using Dash.Areas.Identity.Models;
+﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using Dash.Areas.Identity.Models;
 using Dash.Data;
 using Dash.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -18,9 +19,10 @@ public class IdentityController : Controller
     private readonly IWebHostEnvironment _webenv;
     private readonly ApplicationDbContext _context;
     private readonly IUserRepository _userRepository;
+    private readonly INotyfService _notyfService;
     public IdentityController(UserManager<AppUser> userM, SignInManager<AppUser> signInM, 
         IHttpContextAccessor contextAccessor, ApplicationDbContext context, IWebHostEnvironment webenv,
-        IUserRepository userRepository)
+        IUserRepository userRepository, INotyfService notyfService)
     {
         _userManager = userM;
         _signInManager = signInM;
@@ -28,6 +30,7 @@ public class IdentityController : Controller
         _context = context;
         _webenv = webenv;
         _userRepository = userRepository;
+        _notyfService = notyfService;
     }
     private AppUser? ActiveUser
     {
@@ -49,6 +52,20 @@ public class IdentityController : Controller
     {
         return View();
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Index()
+    {
+        if (ActiveUser == null)
+        {
+            _notyfService.Error("You are not logged in. You need to be logged in to view this page.");
+            return RedirectToAction("Login", "Identity", new {area = "Identity"});
+        }
+
+        var users = await _userRepository.GetAllUsersAsync();
+        ViewBag.user = ActiveUser;
+        return View(users);
+    }
     
     [HttpPost]
     [AllowAnonymous]
@@ -67,11 +84,11 @@ public class IdentityController : Controller
                     HttpContext.Session.SetString("UserName", user.UserName);
                     return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                 }
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                _notyfService.Error("Invalid login attempt.");
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "User does not exist.");
+                _notyfService.Error("User does not exist.");
             }
         }
         return View(model);
@@ -91,7 +108,7 @@ public class IdentityController : Controller
 
                 if (string.IsNullOrEmpty(extension3) || !permittedExtensions3.Contains(extension3))
                 {
-                    throw new FormatException("Invalid image extension");
+                    _notyfService.Error("Invalid image extension.");
                 }
                 string fileName3 = Path.GetFileNameWithoutExtension(model.ImageUrl.FileName);
                 uniqueFileName3 = $"{fileName3}_{Guid.NewGuid()}{extension3}";
@@ -139,82 +156,76 @@ public class IdentityController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
     {
+        if (ActiveUser == null)
+        {
+            _notyfService.Error("You are not logged in, please login before accessing this page.");
+            return RedirectToAction("Login", "Identity", new { area = "Identity" });
+        }
+        ViewBag.user = ActiveUser;
         await _signInManager.SignOutAsync();
-        HttpContext.Session.Clear();
+        _notyfService.Information("User logged out.");
         return RedirectToAction("Login", "Identity", new { area = "Identity" });
     }
 
     [HttpGet("{id}")]
-    [Authorize]
-    public async Task<IActionResult> UpdateUser(string id)
+    public async Task<IActionResult> UpdateUserPage(string id)
     {
         if (ActiveUser == null)
         {
+            _notyfService.Error("You are not logged in, please login before accessing this page.");
             return RedirectToAction("Login", "Identity", new { area = "Identity" });
         }
-        var user = await _userManager.FindByIdAsync(id);
-        if (user == null)
-        {
-            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
-        }
 
+        AppUser user = await _userManager.FindByIdAsync(id);
         ViewBag.user = ActiveUser;
-        ViewBag.updateUser = user;
-        return View();
+        
+        return View(user);
     }
     
     [HttpPost("{id}")]
-    [Authorize]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UpdateUser(string id, [FromForm] UpdateAppUserViewModel user)
     {
         if (ActiveUser == null)
         {
-            ViewBag.ErrorMessage = $"Could not access the page, please login to continue.";
+            _notyfService.Error("You are not logged in, please login before accessing this page.");
             return RedirectToAction("Login", "Identity", new { area = "Identity" });
         }
-
-
         try
         {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.ErrorMessage = $"Could not update the user with the ID: {id}";
-                ModelState.AddModelError(string.Empty,
-                    $"Could not update the user with the provided ID: {id} ModelState is not valid.");
-            }
             await _userRepository.UpdateUserAsync(id, user);
-            return RedirectToAction("UserDetails", "Identity", new { area = "Identity", id = id });
+            ViewBag.user = ActiveUser;
+            _notyfService.Success("User updated.");
+            return RedirectToAction("UserDetails", "Identity", new { area = "Identity", id });
         }
         catch (DbUpdateConcurrencyException ex)
         {
-            ViewBag.ErrorMessage = $"Could not update the user with the ID: {id}";
-            ModelState.AddModelError(string.Empty,
-                $"Could not update the user with the provided ID: {id} DbUpdateConcurrencyException: {ex.Message}");
+            _notyfService.Error($"There has been a exception while updating the user | DbUpdateConcurrencyException: {ex.Message}");
+            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
         }
         catch (DbUpdateException ex)
         {
-            ViewBag.ErrorMessage = $"Could not update the user with the ID: {id}";
-            ModelState.AddModelError(string.Empty, $"Could not update the user with the provided ID: {id} DbUpdateException: {ex.Message}");
+            _notyfService.Error($"There has been a exception while updating the user | DbUpdateException: {ex.Message}");
+            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
         }
         catch (Exception ex)
         {
-            ViewBag.ErrorMessage = $"Could not update the user with the ID: {id}";
-            ModelState.AddModelError(string.Empty, $"Could not update the user with the provided ID: {id} Exception: {ex.Message}");
+            _notyfService.Error($"There has been a exception while updating the user | Exception: {ex.Message}");
+            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
         }
-        ViewBag.user = ActiveUser;
-        return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+        
     }
 
 
     [HttpGet("{id}")]
-    [Authorize]
     public async Task<IActionResult> UserDetails(string id)
     {
         if (ActiveUser == null)
         {
+            _notyfService.Error("You are not logged in, please login before accessing this page.");
             return RedirectToAction("Login", "Identity", new { area = "Identity" });
         }
 
@@ -224,10 +235,17 @@ public class IdentityController : Controller
     }
 
     [HttpDelete("{id}")]
-    [Authorize]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteUser(string id)
     {
+        if (ActiveUser == null)
+        {
+            _notyfService.Error("You are not logged in, please login before accessing this page.");
+            return RedirectToAction("Login", "Identity", new { area = "Identity" });
+        }
         await _userRepository.DeleteUserAsync(id);
+        _notyfService.Success("User deleted.");
+        ViewBag.user = ActiveUser;
         return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
     }
 }

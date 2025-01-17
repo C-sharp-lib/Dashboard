@@ -1,9 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dash.Areas.Identity.Models;
 
 public class UpdateAppUserViewModel : AppUser
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public string Id { get; set; }
     [Required]
     [EmailAddress]
     [DataType(DataType.EmailAddress)]

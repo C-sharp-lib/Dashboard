@@ -1,0 +1,36 @@
+﻿@using Dash.Areas.Admin.Models
+@model IEnumerable<Dash.Areas.Admin.Models.Products>
+@{
+    Layout = "_Layout";
+}
+
+<div class="row mt-11 mb-11 p-7">
+    <div class="col-12 col-md-12">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h1 class="text-gradient text-warning ubuntu-bold">All App Products</h1>
+                <div class="btn-group m-3">
+                    <a class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip" asp-action="Index" asp-controller="Dashboard" asp-area="Admin" title="Go back to the admin dashboard"><i class="fa-solid fa-backward-step"></i></a>
+                </div>
+            </div>
+            <div class="card-body p-3">
+                <div class="row">
+                    @foreach (Products product in Model)
+                    {
+                        <div class="col-12 col-md-3">
+                            <a asp-action="ProductDetails" asp-controller="Product" asp-route-id="@product?.ProductId" asp-area="Admin">
+                                <div class="card card-background shadow-xl">
+                                    <div class="full-background" style="background-image: url('@Url.Content($"~/{product?.ImageUrl}")')"></div>
+                                    <div class="card-body pt-12">
+                                        <h4 class="text-white ubuntu-bold">@product?.Name</h4>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

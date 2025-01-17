@@ -80,3 +80,5 @@ D:\Development\MVC\Dash\Dash\obj\Debug\net6.0\Dash.pdb
 D:\Development\MVC\Dash\Dash\obj\Debug\net6.0\Dash.genruntimeconfig.cache
 D:\Development\MVC\Dash\Dash\obj\Debug\net6.0\ref\Dash.dll
 D:\Development\MVC\Dash\Dash\bin\Debug\net6.0\System.Text.Json.dll
+D:\Development\MVC\Dash\Dash\bin\Debug\net6.0\AspNetCoreHero.ToastNotification.Views.dll
+D:\Development\MVC\Dash\Dash\bin\Debug\net6.0\AspNetCoreHero.ToastNotification.dll

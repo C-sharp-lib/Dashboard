@@ -107,6 +107,26 @@ nav.navbar-expand-lg {
 .nav.nav-tabs {
   border-bottom: none;
 }
+.menu-link {
+  font-family: "Ubuntu", serif !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  z-index: 100000000000 !important;
+}
+.menu-link > .dropdown-menu {
+  display: inline-block !important;
+  position: absolute !important;
+  z-index: 100000000000 !important;
+}
+.fa-menu-style {
+  font-size: 12px !important;
+  position: relative !important;
+  top: 1% !important;
+}
+.dropdown-item.ubuntu-bold.text-white:hover {
+  color: dodgerblue !important;
+  background-color: rgba(55,55,55,0.8) !important;
+}
 /*  End Nav  */
 
 
@@ -115,6 +135,9 @@ nav.navbar-expand-lg {
 .validation-summary {
   list-style-type: none;
   color: tomato;
+}
+.colorpick-eyedropper-input-trigger {
+  display: none;
 }
 
 /*  End Forms  */
@@ -410,7 +433,7 @@ nav.navbar-expand-lg {
   position: relative;
 }
 .card .card-header {
-  z-index: 3 !important;
+  z-index: 2 !important;
 }
 .card .card-header .card-category {
   margin: 0;
@@ -693,6 +716,10 @@ nav.navbar-expand-lg {
   width: 100%;
   height: 300px;
 }
+#bar-chart {
+  width: 100%;
+  height: 300px;
+}
 .line-chart-card {
   position: relative;
   bottom: 50% !important;
@@ -780,3 +807,138 @@ td > a >.fa-regular.fa-trash-can {
 }
 /*     END Calendar     */
 
+
+
+/*Image Card*/
+
+.container-image {
+  padding: 5px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-wrap {
+  margin: 10px;
+  transform: perspective(400px);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+.card-wrap:hover .card-info {
+  transform: translateY(0);
+}
+.card-wrap:hover .card-info div,
+.card-wrap:hover .card-info div > a,
+.card-wrap:hover .card-info p {
+  opacity: 1;
+}
+.card-wrap:hover .card-info, .card-wrap:hover .card-info p {
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.card-wrap:hover .card-info:after {
+  transition: 5s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 1;
+  transform: translateY(0);
+}
+.card-wrap:hover .card-vue {
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 5s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0.8;
+}
+.card-wrap:hover .card-vue {
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 2s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: rgba(255, 255, 255, 0.2) 0 0 40px 5px, white 0 0 0 1px, rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset white 0 0 0 6px;
+}
+
+.card-vue {
+  position: relative;
+  flex: 0 0 240px;
+  width: 240px;
+  height: 320px;
+  background-color: #333;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
+  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.card-bg {
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  pointer-events: none;
+}
+
+.card-info {
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  transform: translateY(20%);
+  transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.card-info p {
+  opacity: 0;
+  text-shadow: black 0 2px 3px;
+  transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.card-info * {
+  position: relative;
+  z-index: 1;
+}
+.card-info:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+  background-blend-mode: overlay;
+  opacity: 0;
+  transform: translateY(80%);
+  transition: 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.card-info h1 {
+  font-family: "Ubuntu", serif !important;
+  font-size: 36px;
+  font-weight: 700;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
+}
+
+/*END Image Card*/
+a.m-3.btn-tooltip {
+  cursor: pointer !important;
+}
+
+
+.fa-solid.fa-lock {
+  color: darkorange;
+}
+.fa-solid.fa-calendar-days {
+  color: lime;
+}
+.fa-solid.fa-xmark {
+  color: red;
+}
+.fa-solid.fa-pen-to-square.message {
+  color: lime;
+}
+.fa-solid.fa-check {
+  color: lime;
+}
+.text-indigo {
+  color: indigo !important;
+}
+.dropdown > .dropdown-toggle {
+  font-size: 1rem !important;
+}

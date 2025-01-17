@@ -102,6 +102,29 @@ public class EventRepository : Repository<Event>, IEventRepository
         }
     }
 
+    public async Task UpdateEventByIdAsync(int id, [FromForm] UpdateEventViewModel model)
+    {
+        var eve = await _dbSet
+            .Include(eu => eu.UserEvents)
+            .ThenInclude(eu => eu.User)
+            .FirstOrDefaultAsync(eu => eu.EventId == id);
+        if (eve != null)
+        {
+            eve.Title = model.Title;
+            eve.Description = model.Description;
+            eve.StartDate = model.StartDate;
+            eve.EndDate = model.EndDate;
+            eve.Color = model.Color;
+            eve.ForegroundColor = model.ForegroundColor;
+            _dbSet.Update(eve);
+            await _context.SaveChangesAsync();
+        }
+        else
+        {
+            throw new NullReferenceException($"Event with id {eve?.EventId} was not found");
+        }
+    }
+
 
     public async Task DeleteEventAsync(int id)
     {

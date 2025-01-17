@@ -1,0 +1,109 @@
+﻿@using Dash.Areas.Admin.Models
+@model Dash.Areas.Admin.Models.UpdateProductViewModel
+@{
+    Layout = "_Layout";
+    Products product = ViewBag.product;
+}
+
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-12 col-lg-8 offset-lg-2">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h1 class="text-gradient text-warning ubuntu-bold">Update @product.TruncateWords(product.Name, 4)</h1>
+                <a asp-action="Index" asp-controller="Dashboard" asp-area="Admin" class="btn bg-gradient-info ubuntu-bold">Back To Dashboard</a>
+            </div>
+            <div class="card-body p-5">
+
+                <form id="eventForm" class="form" asp-action="UpdateProduct" asp-controller="Product" asp-route-id="@product.ProductId" asp-area="Admin" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-12">
+                            <h6 class="text-gradient text-info ubuntu-bold">Image Preview</h6>
+                            <img id="previewImage" src="" alt="Image Preview"
+                                 style="width: auto; display: none; margin-top: 10px; height: 400px"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <input asp-for="ImageUrl" value="@product.ImageUrl" id="ImageUrl" style="display: none;"
+                                       accept="image/*">
+                                <label asp-for="ImageUrl" class="btn bg-gradient-dark custom-file-button">Choose File</label>
+                                <span id="fileName" class="file-name text-warning ubuntu-bold">No file selected</span>
+                                <span asp-validation-for="ImageUrl" class="text-danger m-2 p-2"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Name" class="form-label text-gradient text-info ubuntu-bold">Name</label>
+                                <input asp-for="Name" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Name" value="@product.Name"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Price" class="form-label text-gradient text-info ubuntu-bold">Price</label>
+                                <input asp-for="Price" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Price" value="@product.Price.ToString("C")"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="QuantityInStock" class="form-label text-gradient text-info ubuntu-bold">Qty In Stock</label>
+                                <input asp-for="QuantityInStock" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="QuantityInStock" value="@product.QuantityInStock"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="UPC" class="form-label text-gradient text-info ubuntu-bold">UPC</label>
+                                <input asp-for="UPC" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="UPC" value="@product.UPC">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Category" class="form-label text-gradient text-info ubuntu-bold">Category</label>
+                                <input asp-for="Category" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Category" value="@product.Category">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Currency" class="form-label text-gradient text-info ubuntu-bold">Currency Type</label>
+                                <input asp-for="Currency" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Currency" value="@product.Currency">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="form-label text-gradient text-info ubuntu-bold">Description</label>
+                                @Html.TextArea("Description", product.Description, new {@class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu", cols=10, rows=5})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-3 mb-3">
+                        <button type="submit" class="btn btn-primary" id="saveEventBtn">Add Product</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript">
+    document.getElementById('ImageUrl').onchange = function (event) {
+      let reader = new FileReader();
+      reader.onload = function () {
+        let output = document.getElementById('previewImage');
+        output.src = reader.result;
+        output.style.display = 'block';
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    };
+    document.getElementById('ImageUrl').addEventListener('change', function (event) {
+      let fileName = event.target.files.length > 0 ? event.target.files[0].name : "No file selected";
+      document.getElementById('fileName').textContent = fileName;
+    });
+  
+  </script>
+}

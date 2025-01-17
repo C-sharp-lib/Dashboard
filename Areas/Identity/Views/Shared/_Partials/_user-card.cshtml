@@ -1,0 +1,17 @@
+﻿@model Dash.Areas.Identity.Models.AppUser
+
+
+<div class="card card-background move-on-hover">
+    <div class="full-background" style="background-image: url('@Url.Content($"~/Uploads/AppUsers/{Model.ImageUrl}")')"></div>
+    <div class="card-body pt-12">
+        <h4 class="text-white">@Model.FirstName @Model.MiddleName @Model.LastName</h4>
+        <div class="card-footer card-img-overlay mb-5">
+            <a asp-action="UserDetails" asp-controller="Identity" asp-route-id="@Model.Id" asp-area="Identity" title="View @Model.UserName's Profile"  class="m-4 btn-tooltip"><i class="fa-solid fa-list text-gradient text-info text-sm"></i></a>
+            <a asp-action="UpdateUser" asp-controller="Identity" asp-route-id="@Model.Id" asp-area="Identity" class="m-4 btn-tooltip" title="Edit @Model.UserName's Profile"><i class="fa-solid fa-pen-to-square text-gradient text-primary text-sm"></i></a>
+            <a asp-action="DeleteUser" asp-controller="Identity" asp-route-id="@Model.Id" asp-area="Identity" title="Delete @Model.UserName's Profile" class="m-4 btn-tooltip "><i class="fa-solid fa-trash text-gradient text-danger text-sm"></i></a>
+        </div>
+    </div>
+</div>
+
+
+}

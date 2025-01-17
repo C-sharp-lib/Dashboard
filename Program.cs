@@ -1,4 +1,5 @@
 using System.Text.Json;
+using AspNetCoreHero.ToastNotification;
 using Dash.Configuration;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,13 @@ public class Program
         builder.Services.AddAppConfiguration();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IEventRepository, EventRepository>();
+        builder.Services.AddScoped<IProductRepository, ProductRepository>();
+        builder.Services.AddNotyf(config =>
+        {
+            config.DurationInSeconds = 10;
+            config.IsDismissable = true;
+            config.Position = NotyfPosition.TopCenter;
+        });
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
@@ -42,10 +50,17 @@ public class Program
         if (app.Environment.IsDevelopment())
         {
             app.UseMigrationsEndPoint();
+            app.UseExceptionHandler(new ExceptionHandlerOptions()
+            {
+                AllowStatusCode404Response = true,
+                ExceptionHandlingPath = "/Error"
+            });
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
         }
         else
         {
-            app.UseExceptionHandler("/Home/Error");
+            app.UseExceptionHandler("/Error/ExceptionHandler");
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
             // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }

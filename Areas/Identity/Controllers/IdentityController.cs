@@ -234,7 +234,7 @@ public class IdentityController : Controller
         return View(user);
     }
 
-    [HttpDelete("{id}")]
+    [HttpPost("{id}")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteUser(string id)
     {

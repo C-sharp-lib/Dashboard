@@ -9,6 +9,7 @@ public class IndexViewModel
     public IEnumerable<UserEvents> UserEvents { get; set; }
     public IEnumerable<Event> Events { get; set; }
     public IEnumerable<Products> Products { get; set; }
+    public int CustomerCount { get; set; }
 
     public Event SelectedEvent { get; set; }
     public int UserCount { get; set; }

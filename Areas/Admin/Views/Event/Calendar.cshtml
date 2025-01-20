@@ -9,7 +9,7 @@
         <div class="card shadow-lg bg-gradient-dark">
             <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
                 <h1 class="text-gradient text-primary ubuntu-bold">Schedule</h1>
-                <a class="btn bg-gradient-info ubuntu-bold" asp-action="AddEventPage" asp-controller="Dashboard" asp-area="Admin">Add Event</a>
+                <a class="btn bg-gradient-info ubuntu-bold" asp-action="AddEventPage" asp-controller="Event" asp-area="Admin">Add Event</a>
             </div>
             <div class="card-body p-4">
                 <div id='calendar'></div>
@@ -27,7 +27,7 @@
                 <button type="button" class="btn-close" style="color: #880000 !important; font-family: 'Ubuntu', sans-serif; font-weight: bold;" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body bg-gradient-dark p-3">
-                <form id="eventForm" class="form" asp-action="UpdateEvents" asp-controller="Dashboard" asp-area="Admin" method="post">
+                <form id="eventForm" class="form" asp-action="UpdateEvents" asp-controller="Event" asp-area="Admin" method="post">
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="EventId" id="EventId">
                     <div class="form-group">

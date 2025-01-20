@@ -17,7 +17,9 @@
                     <div class="btn-group m-3">
                         <a class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip" asp-action="Index" asp-controller="Event" asp-area="Admin" title="Go back to the event list"><i class="fa-solid fa-backward-step"></i></a>
                         <a class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip" asp-action="UpdateEventPage" asp-controller="Event" asp-area="Admin" asp-route-id="@Model?.EventId" title="Edit Event ID: @Model?.EventId"><i class="fa-solid fa-pen-to-square"></i></a>
-                        <a class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" asp-action="DeleteEvents" asp-controller="Event" asp-route-id="@Model?.EventId" asp-area="Admin" title="Delete Event ID: @Model?.EventId"><i class="fa-solid fa-trash"></i></a>
+                        <form asp-action="DeleteEvents" asp-controller="Event" asp-area="Admin" asp-route-id="@Model?.EventId" method="post">
+                            <button type="submit" class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" title="Delete @Model?.Title"><i class="fa-solid fa-trash"></i></button>
+                        </form>
                     </div>
                 </div>
                 <div class="card-body p-4">

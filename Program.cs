@@ -28,6 +28,7 @@ public class Program
         builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<IEventRepository, EventRepository>();
         builder.Services.AddScoped<IProductRepository, ProductRepository>();
+        builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
         builder.Services.AddNotyf(config =>
         {
             config.DurationInSeconds = 10;

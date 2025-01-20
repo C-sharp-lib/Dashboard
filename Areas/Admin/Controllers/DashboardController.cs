@@ -20,14 +20,16 @@ public class DashboardController : Controller
     private readonly IUserRepository _userRepository;
     private readonly IEventRepository _eventRepository;
     private readonly IProductRepository _productRepository;
+    private readonly ICustomerRepository _customerRepository;
     private readonly INotyfService _notyfService;
     public DashboardController(ApplicationDbContext context, IUserRepository userRepository, IEventRepository eventRepository, 
-        IProductRepository productRepository, INotyfService notyfService)
+        IProductRepository productRepository, ICustomerRepository customerRepository, INotyfService notyfService)
     {
         _context = context;
         _userRepository = userRepository;
         _eventRepository = eventRepository;
         _productRepository = productRepository;
+        _customerRepository = customerRepository;
         _notyfService = notyfService;
     }
     private AppUser? ActiveUser
@@ -68,7 +70,7 @@ public class DashboardController : Controller
             UserCount = GetUsers().Count,
             EventCount = GetEvents().Count,
             ProductCount = GetProducts().Count,
-            
+            CustomerCount = await _customerRepository.CountCustomersAsync()
         };
         ViewBag.Users = await _userRepository.GetAllUsersAsync();
         ViewBag.Events = await _eventRepository.GetAllEventsAsync();

@@ -151,7 +151,7 @@ public class ProductController : Controller
         
     }
 
-    [HttpDelete("{id}")]
+    [HttpPost("{id}")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteProduct(int id)
     {

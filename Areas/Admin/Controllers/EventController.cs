@@ -180,7 +180,7 @@ public class EventController : Controller
     }
     
     
-    [HttpDelete("{id}")]
+    [HttpPost("{id}")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteEvents(int id)
     {
@@ -221,33 +221,4 @@ public class EventController : Controller
         ViewBag.user = ActiveUser;
         return View();
     }
-    
-    [HttpGet("{id}")]
-    public async Task<IActionResult> UserEventDetails(int id)
-    {
-        if (ActiveUser == null)
-        {
-            _notyfService.Error("You are not logged in, please login before accessing this page.");
-            return RedirectToAction("Login", "Identity", new { area = "Identity" });
-        }
-        var eu = await _eventRepository.GetEventByIdAsync(id);
-        ViewBag.user = ActiveUser;
-        return View(eu);
-    }
-
-    [HttpDelete("{id}")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteUserEvent(int id)
-    {
-        if (ActiveUser == null)
-        {
-            _notyfService.Error("You are not logged in, please login before accessing this page.");            
-            return RedirectToAction("Login", "Identity", new { area = "Identity" });
-        }
-        await _eventRepository.DeleteEventAsync(id);
-        _notyfService.Success("Event deleted successfully");
-        ViewBag.user = ActiveUser;
-        return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
-    }
-
 }

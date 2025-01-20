@@ -39,7 +39,9 @@
                 <div class="btn-group m-3">
                     <a class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip" asp-action="Index" asp-controller="Product" asp-area="Admin" title="Go back to the product list"><i class="fa-solid fa-backward-step"></i></a>
                     <a class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip" asp-action="UpdateProductPage" asp-controller="Product" asp-area="Admin" asp-route-id="@Model?.ProductId" title="Edit @Model?.Name"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" asp-action="DeleteProduct" asp-controller="Product" asp-route-id="@Model?.ProductId" asp-area="Admin" title="Delete @Model?.Name"><i class="fa-solid fa-trash"></i></a>
+                    <form asp-action="DeleteProduct" asp-controller="Product" asp-area="Admin" asp-route-id="@Model.ProductId" method="post">
+                        <button type="submit" class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" title="Delete @Model?.Name"><i class="fa-solid fa-trash"></i></button>
+                    </form>
                 </div>
             </div>
             <div class="card-body p-4">

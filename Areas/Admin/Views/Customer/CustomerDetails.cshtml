@@ -1,0 +1,58 @@
+﻿@model Dash.Areas.Admin.Models.Customers
+@{
+    Layout = "_Layout";
+}
+
+<div class="container">
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-6">
+        <div class="card shadow-lg bg-gradient-dark">
+            
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h3 class="text-gradient text-info ubuntu-bold">@Model.Email's Details</h3>
+                <div class="btn-group m-3">
+                    <a class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip" asp-action="Index" asp-controller="Customer" asp-area="Admin" title="Go back to the customer list"><i class="fa-solid fa-backward-step"></i></a>
+                    <a class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip" asp-action="UpdateCustomerPage" asp-controller="Customer" asp-area="Admin" asp-route-id="@Model?.CustomerId" title="Edit @Model?.UserName"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <form asp-action="DeleteCustomer" asp-controller="Customer" asp-area="Admin" asp-route-id="@Model?.CustomerId" method="post">
+                        <button type="submit" class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" title="Delete @Model?.Email"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <h3 class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Name</span> 
+                    @Model.FirstName @Model.LastName
+                </h3>
+                <h6 class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">ID</span>
+                    @Model.CustomerId
+                </h6>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Email</span>
+                    @Model.Email
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">UserName</span>
+                    @Model.UserName
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">PhoneNumber</span>
+                    @Model?.PhoneNumber
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Address</span>
+                    @Model?.Address @Model?.City, @Model?.State, @Model?.ZipCode
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Country</span>
+                    @Model?.Country
+                </p>
+            </div>
+            </div>
+        </div>
+</div>
+</div>

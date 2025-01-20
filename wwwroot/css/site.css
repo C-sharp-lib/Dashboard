@@ -127,6 +127,15 @@ nav.navbar-expand-lg {
   color: dodgerblue !important;
   background-color: rgba(55,55,55,0.8) !important;
 }
+#Country option {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: linear-gradient(120deg, rgba(22,22,22,0.7), rgba(225,225,225,0.8)) !important;
+  background-image: -moz-linear-gradient(120deg, rgba(22,22,22,0.7), rgba(225,225,225,0.8)) !important;
+  background-image: -ms-linear-gradient(120deg, rgba(22,22,22,0.7), rgba(225,225,225,0.8)) !important;
+  background-image: -webkit-linear-gradient(120deg, rgba(22,22,22,0.7), rgba(225,225,225,0.8)) !important;
+}
 /*  End Nav  */
 
 

@@ -38,7 +38,9 @@
                 <div class="btn-group m-3">
                     <a class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip" asp-action="Index" asp-controller="Identity" asp-area="Identity" title="Go back to the user list"><i class="fa-solid fa-backward-step"></i></a>
                     <a class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip" asp-action="UpdateUserPage" asp-controller="Identity" asp-area="Identity" asp-route-id="@Model?.Id" title="Edit @Model?.UserName"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" asp-action="DeleteUser" asp-controller="Identity" asp-route-id="@Model?.Id" asp-area="Identity" title="Delete @Model?.UserName"><i class="fa-solid fa-trash"></i></a>
+                    <form asp-action="DeleteUser" asp-controller="Identity" asp-area="Identity" asp-route-id="@Model?.Id" method="post">
+                        <button type="submit" class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" title="Delete @Model?.UserName"><i class="fa-solid fa-trash"></i></button>
+                    </form>
                 </div>
             </div>
             <div class="card-body p-4">

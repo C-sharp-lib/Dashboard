@@ -19,6 +19,9 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<UserEvents> UserEvents { get; set; }
     public DbSet<Products> Products { get; set; }
     public DbSet<Customers> Customers { get; set; }
+    public DbSet<Campaigns> Campaigns { get; set; }
+    public DbSet<CampaignUserNotes> CampaignUserNotes { get; set; }
+    public DbSet<CampaignUserTasks> CampaignUserTasks { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -30,6 +33,9 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         builder.Entity<UserSchedules>().HasKey(x => new { x.UserId, x.ScheduleId, x.UserScheduleId });
         builder.Entity<Products>().HasKey(p => p.ProductId);
         builder.Entity<Customers>().HasKey(x => x.CustomerId);
+        builder.Entity<Campaigns>().HasKey(x => x.CampaignId);
+        builder.Entity<CampaignUserTasks>().HasKey(x => new { x.UserId, x.CampaignId, x.CampaignUserTaskId });
+        builder.Entity<CampaignUserNotes>().HasKey(x => new { x.UserId, x.CampaignId, x.CampaignUserNoteId });
         builder.Entity<UserSchedules>()
             .HasOne(x => x.Schedule)
             .WithMany(x => x.UserSchedules)
@@ -45,6 +51,22 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         builder.Entity<UserEvents>()
             .HasOne(x => x.User)
             .WithMany(x => x.UserEvents)
+            .HasForeignKey(x => x.UserId);
+        builder.Entity<CampaignUserTasks>()
+            .HasOne(x => x.Campaign)
+            .WithMany(x => x.CampaignUserTasks)
+            .HasForeignKey(x => x.CampaignId);
+        builder.Entity<CampaignUserTasks>()
+            .HasOne(x => x.User)
+            .WithMany(x => x.CampaignUserTasks)
+            .HasForeignKey(x => x.UserId);
+        builder.Entity<CampaignUserNotes>()
+            .HasOne(x => x.Campaign)
+            .WithMany(x => x.CampaignUserNotes)
+            .HasForeignKey(x => x.CampaignId);
+        builder.Entity<CampaignUserNotes>()
+            .HasOne(x => x.User)
+            .WithMany(x => x.CampaignUserNotes)
             .HasForeignKey(x => x.UserId);
     }
 }

@@ -27,8 +27,8 @@
                     {
                         <tr class="text-center text-sm">
                             <td class="text-white ubuntu">@events.EventId</td>
-                            <td class="text-white ubuntu">@events.TruncateWords(events.Title, 3)</td>
-                            <td class="text-white ubuntu">@events.TruncateWords(events.Description, 3)</td>
+                            <td class="text-white ubuntu">@events.TruncateWords(events.Title, 6)</td>
+                            <td class="text-white ubuntu">@events.TruncateWords(events.Description, 6)</td>
                             <td class="text-white ubuntu"><input type="color" disabled="disabled" value="@events.Color" class="form-control color-background bg-gradient-dark"/></td>
                             <td class="text-white ubuntu"><input type="color" disabled="disabled" value="@events.ForegroundColor" class="form-control color-background bg-gradient-dark"/></td>
                             <td class="text-white ubuntu">@events.StartDate.ToString("d") - @events.EndDate.ToString("d")</td>

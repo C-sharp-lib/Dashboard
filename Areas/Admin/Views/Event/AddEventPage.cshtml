@@ -9,11 +9,11 @@
         <div class="card shadow-lg bg-gradient-dark">
             <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
                 <h1 class="text-gradient text-warning ubuntu-bold">Add An Event</h1>
-                <a asp-action="Index" asp-controller="Dashboard" asp-area="Admin" class="btn bg-gradient-info ubuntu-bold">Back To Dashboard</a>
+                <a asp-action="Index" asp-controller="Event" asp-area="Admin" class="btn bg-gradient-info ubuntu-bold">Back To Dashboard</a>
             </div>
             <div class="card-body p-3">
 
-                <form id="eventForm" class="form" asp-action="AddEvent" asp-controller="Dashboard" asp-area="Admin" method="post">
+                <form id="eventForm" class="form" asp-action="AddEvent" asp-controller="Event" asp-area="Admin" method="post">
                     <div class="form-group">
                         <label asp-for="Title" class="form-label text-gradient text-info ubuntu-bold">Title</label>
                         <input asp-for="Title" type="text" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Title"/>

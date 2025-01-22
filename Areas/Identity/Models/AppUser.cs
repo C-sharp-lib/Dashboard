@@ -24,4 +24,6 @@ public class AppUser : IdentityUser
     public string? ZipCode { get; set; }
     public IEnumerable<UserSchedules> UserSchedules { get; set; }
     public IEnumerable<UserEvents> UserEvents { get; set; }
+    public IEnumerable<CampaignUserNotes> CampaignUserNotes { get; set; }
+    public IEnumerable<CampaignUserTasks> CampaignUserTasks { get; set; }
 }

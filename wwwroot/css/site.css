@@ -107,11 +107,17 @@ nav.navbar-expand-lg {
 .nav.nav-tabs {
   border-bottom: none;
 }
+.dropdown-toggle {
+  display: block !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+}
 .menu-link {
   font-family: "Ubuntu", serif !important;
   font-size: 1.3rem !important;
   font-weight: 700 !important;
   z-index: 100000000000 !important;
+  margin: -1% auto !important;
 }
 .menu-link > .dropdown-menu {
   display: inline-block !important;

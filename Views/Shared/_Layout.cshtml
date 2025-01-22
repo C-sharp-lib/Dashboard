@@ -16,7 +16,7 @@
 <body class="bg-gradient-dark">
 <div class="container">
     <nav
-            class="navbar navbar-expand-lg bg-gradient-dark navbar-dark  blur blur-rounded top-0  z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        class="navbar navbar-expand-lg bg-gradient-dark navbar-dark  blur blur-rounded top-0 position-absolute justify-content-center z-index-3 shadow-lg py-2 sticky-top start-0 end-0 mx-auto">
         <div class="container px-0">
             @if (ViewBag.user != null)
             {
@@ -29,7 +29,7 @@
             {
                 <a class="navbar-brand ubuntu-bold ms-sm-3 text-white" asp-action="Index" asp-controller="Home" rel="tooltip"
                    title="Created By Kevin Stradtman" data-placement="bottom">
-                     Financial Dashboard <img src="~/img/logo-2.png" height="50" width="50" alt="Site Logo"/>
+                    Financial Dashboard <img src="~/img/logo-2.png" height="50" width="50" alt="Site Logo"/>
                 </a>    
             }
             
@@ -42,109 +42,111 @@
             </button>
             <div class="nav">
                 <div class="collapse navbar-collapse" id="navigation">
-                    <div class="d-flex justify-content-start gap-2">
+                    <div class="d-flex justify-content-center gap-2">
 
-                        <div class="dropdown m-3">
-                            <a class="btn bg-gradient-warning dropdown-toggle ubuntu-bold text-white" id="dropdownAccountA"
+                        <div class="dropdown mx-auto">
+                            <a class="btn bg-gradient-dark dropdown-toggle ubuntu-bold text-gradient text-warning mx-auto" id="dropdownAccountA"
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Account
                             </a>
                             <ul class="dropdown-menu bg-gradient-dark" aria-labelledby="dropdownAccountA">
                                 @if (ViewBag.user == null)
                                 {
-                                    <li><a class="dropdown-item ubuntu-bold text-white" asp-action="Register" asp-controller="Identity" asp-area="Identity">Register</a></li>
-                                    <li><a class="dropdown-item ubuntu-bold text-white" asp-action="Login" asp-controller="Identity" asp-area="Identity">Login</a></li>
+                                    <li><a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Register" asp-controller="Identity" asp-area="Identity">Register</a></li>
+                                    <li><a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Login" asp-controller="Identity" asp-area="Identity">Login</a></li>
                                 }
                                 else
                                 {
                                     <form asp-controller="Identity" asp-action="Logout" asp-area="Identity" method="post">
-                                        <button class="dropdown-item ubuntu-bold text-gradient text-warning" type="submit">Logout</button>
+                                        <button class="dropdown-item ubuntu-bold text-white border-radius-md" type="submit">Logout</button>
                                     </form>
                                 }
                             </ul>
                         </div>
                         @if (ViewBag.user != null)
                         {
-                            <li class="nav-item dropdown dropdown-hover mx-2 z-index-3">
-                  <a role="button" class="nav-link text-gradient text-info ubuntu-bold mt-3 ps-2 d-flex justify-content-between cursor-pointer align-items-center menu-link" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
-                    Menu
-                    <img src="~/assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
-                  </a>
-                  <div class="dropdown-menu bg-gradient-dark dropdown-menu-animation dropdown-xl p-3 border-radius-xl mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
-                    <div class="row d-none d-lg-block">
-                      <div class="col-12 px-4 py-2">
-                        <div class="row">
-                            <div class="col-4 position-relative">
-                                <div class="dropdown-header text-white ubuntu-bold font-weight-bolder d-flex align-items-center px-0 mt-3">
-                                    <div class="d-inline-block">
-                                        <div class="icon icon-shape icon-xs border-radius-md bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center ps-0">
-                                            <i class="fa-solid fa-gauge fa-menu-style"></i>
+                            <li class="nav-item dropstart dropdown-hover mx-auto z-index-3">
+                                <a role="button" class="nav-link text-gradient text-info text-center ubuntu-bold mt-3 my-2 ps-2 mx-2 d-flex justify-content-center cursor-pointer align-items-center menu-link" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Menu
+                                    <img src="~/assets/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-1">
+                                </a>
+                                <div class="dropdown-menu bg-gradient-dark dropdown-menu-animation dropdown-xl p-3 border-radius-xl mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
+                                    <div class="row d-none d-lg-block">
+                                        <div class="col-12 px-4 py-2">
+                                            <div class="row">
+                                                <div class="col-4 position-relative">
+                                                    <hr class="vertical bg-white">
+                                                    <div class="dropdown-header text-white ubuntu-bold font-weight-bolder d-flex align-items-center px-0 mt-3">
+                                                        <div class="d-inline-block">
+                                                            <div class="icon icon-shape icon-xs border-radius-md bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center ps-0">
+                                                                <i class="fa-solid fa-gauge fa-menu-style"></i>
+                                                            </div>
+                                                        </div>
+                                                        Admin Dashboard
+                                                    </div>
+                                                    <hr class="horizontal bg-gradient-warning">
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Dashboard" asp-area="Admin">Dashboard</a>
+                                                    <hr class="horizontal border-dashed bg-white">
+                                                    <div class="dropdown-header text-white ubuntu-bold font-weight-bolder d-flex align-items-center px-0 mt-3">
+                                                        <div class="d-inline-block">
+                                                            <div class="icon icon-shape icon-xs border-radius-md bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center ps-0">
+                                                                <i class="fa-regular fa-object-group fa-menu-style"></i>
+                                                            </div>
+                                                        </div>
+                                                        Entities
+                                                    </div>
+                                                    <hr class="horizontal bg-gradient-warning">
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Identity" asp-area="Identity">User List</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Product" asp-area="Admin">Product List</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Customer" asp-area="Admin">Customer List</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Event" asp-area="Admin">Event List</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Calendar" asp-controller="Event" asp-area="Admin">Calendar</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddEventPage" asp-controller="Event" asp-area="Admin">Add Event</a>
+                                                </div>
+                            
+                                                <div class="col-4 position-relative">
+                                                    <hr class="vertical bg-white">
+                                                    <div class="dropdown-header text-white ubuntu-bold font-weight-bolder d-flex align-items-center px-0 mt-3">
+                                                        <div class="d-inline-block">
+                                                            <div class="icon icon-shape icon-xs border-radius-md bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center ps-0">
+                                                                <i class="fa-solid fa-money-bill-trend-up fa-menu-style"></i>
+                                                            </div>
+                                                        </div>
+                                                        Investments
+                                                    </div>
+                                                    <hr class="horizontal bg-gradient-warning">
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Identity" asp-area="Identity">Investors</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddProductPage" asp-controller="Product" asp-area="Admin">Add Investor</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Product" asp-area="Admin">Communities</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddProductPage" asp-controller="Product" asp-area="Admin">Add Communities</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Event" asp-area="Admin">Companies</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Calendar" asp-controller="Event" asp-area="Admin">Add Company</a>
+                                                </div>
+                                                <hr class="vertical bg-white"/>
+                                                <div class="col-4 position-relative">
+                                                    <div class="dropdown-header text-white ubuntu-bold font-weight-bolder d-flex align-items-center px-0 mt-3">
+                                                        <div class="d-inline-block">
+                                                            <div class="icon icon-shape icon-xs border-radius-md bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center ps-0">
+                                                                <i class="fa-solid fa-bag-shopping fa-menu-style"></i>
+                                                            </div>
+                                                        </div>
+                                                        Profits
+                                                    </div>
+                                                    <hr class="horizontal bg-gradient-warning">
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Customer" asp-area="Admin">Customers</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddCustomerPage" asp-controller="Customer" asp-area="Admin">Add Customer</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Product" asp-area="Admin">Orders</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddProductPage" asp-controller="Product" asp-area="Admin">Add Order</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Event" asp-area="Admin">Reviews</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Calendar" asp-controller="Event" asp-area="Admin">Case Studies</a>
+                                                    <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddEventPage" asp-controller="Event" asp-area="Admin">Notes</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    Admin Dashboard
                                 </div>
-                                <hr class="horizontal bg-gradient-warning">
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Dashboard" asp-area="Admin">Dashboard</a>
-                                <hr class="horizontal border-dashed bg-white">
-                                <div class="dropdown-header text-white ubuntu-bold font-weight-bolder d-flex align-items-center px-0 mt-3">
-                                    <div class="d-inline-block">
-                                        <div class="icon icon-shape icon-xs border-radius-md bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center ps-0">
-                                            <i class="fa-regular fa-object-group fa-menu-style"></i>
-                                        </div>
-                                    </div>
-                                    Entities
-                                </div>
-                                <hr class="horizontal bg-gradient-warning">
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Identity" asp-area="Identity">User List</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Product" asp-area="Admin">Product List</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Customer" asp-area="Admin">Customer List</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Event" asp-area="Admin">Event List</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Calendar" asp-controller="Event" asp-area="Admin">Calendar</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddEventPage" asp-controller="Event" asp-area="Admin">Add Event</a>
-                            </div>
-                            <hr class="vertical light">
-                            <div class="col-4 position-relative">
-                                <div class="dropdown-header text-white ubuntu-bold font-weight-bolder d-flex align-items-center px-0 mt-3">
-                                    <div class="d-inline-block">
-                                        <div class="icon icon-shape icon-xs border-radius-md bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center ps-0">
-                                            <i class="fa-solid fa-money-bill-trend-up fa-menu-style"></i>
-                                        </div>
-                                    </div>
-                                    Investments
-                                </div>
-                                <hr class="horizontal bg-gradient-warning">
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Identity" asp-area="Identity">Investors</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddProductPage" asp-controller="Product" asp-area="Admin">Add Investor</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Product" asp-area="Admin">Communities</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddProductPage" asp-controller="Product" asp-area="Admin">Add Communities</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Event" asp-area="Admin">Companies</a>
-                                <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Calendar" asp-controller="Event" asp-area="Admin">Add Company</a>
-                            </div>
-                            <hr class="vertical light"/>
-                          <div class="col-4 position-relative">
-                              <div class="dropdown-header text-white ubuntu-bold font-weight-bolder d-flex align-items-center px-0 mt-3">
-                                  <div class="d-inline-block">
-                                      <div class="icon icon-shape icon-xs border-radius-md bg-gradient-info text-center me-2 d-flex align-items-center justify-content-center ps-0">
-                                          <i class="fa-solid fa-bag-shopping fa-menu-style"></i>
-                                      </div>
-                                  </div>
-                                  Profits
-                              </div>
-                              <hr class="horizontal bg-gradient-warning">
-                              <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Customer" asp-area="Admin">Customers</a>
-                              <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddCustomerPage" asp-controller="Customer" asp-area="Admin">Add Customer</a>
-                              <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Product" asp-area="Admin">Orders</a>
-                              <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddProductPage" asp-controller="Product" asp-area="Admin">Add Order</a>
-                              <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Index" asp-controller="Event" asp-area="Admin">Reviews</a>
-                              <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="Calendar" asp-controller="Event" asp-area="Admin">Case Studies</a>
-                              <a class="dropdown-item ubuntu-bold text-white border-radius-md" asp-action="AddEventPage" asp-controller="Event" asp-area="Admin">Notes</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </li>    
-                        }
+                            </li>    
+                            }
                     </div>
                 </div>
             </div>

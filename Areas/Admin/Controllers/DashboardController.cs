@@ -21,15 +21,23 @@ public class DashboardController : Controller
     private readonly IEventRepository _eventRepository;
     private readonly IProductRepository _productRepository;
     private readonly ICustomerRepository _customerRepository;
+    private readonly ICampaignRepository _campaignRepository;
+    private readonly ICampaignUserNoteRepository _campaignUserNoteRepository;
+    private readonly ICampaignUserTaskRepository _campaignUserTaskRepository;
     private readonly INotyfService _notyfService;
     public DashboardController(ApplicationDbContext context, IUserRepository userRepository, IEventRepository eventRepository, 
-        IProductRepository productRepository, ICustomerRepository customerRepository, INotyfService notyfService)
+        IProductRepository productRepository, ICustomerRepository customerRepository, INotyfService notyfService, 
+        ICampaignRepository campaignRepository, ICampaignUserNoteRepository campaignUserNoteRepository,
+        ICampaignUserTaskRepository campaignUserTaskRepository)
     {
         _context = context;
         _userRepository = userRepository;
         _eventRepository = eventRepository;
         _productRepository = productRepository;
         _customerRepository = customerRepository;
+        _campaignRepository = campaignRepository;
+        _campaignUserNoteRepository = campaignUserNoteRepository;
+        _campaignUserTaskRepository = campaignUserTaskRepository;
         _notyfService = notyfService;
     }
     private AppUser? ActiveUser
@@ -67,10 +75,16 @@ public class DashboardController : Controller
             Events = await _eventRepository.GetAllEventsAsync(),
             Products = await _productRepository.GetAllProductsAsync(),
             Users = await _userRepository.GetAllUsersAsync(),
+            Campaigns = await _campaignRepository.GetAllCampaignsAsync(),
+            CampaignUserNotes = await _campaignUserNoteRepository.GetAllCampaignUserNotesAsync(),
+            CampaignUserTasks = await _campaignUserTaskRepository.GetAllCampaignUserTasksAsync(),
             UserCount = GetUsers().Count,
             EventCount = GetEvents().Count,
             ProductCount = GetProducts().Count,
-            CustomerCount = await _customerRepository.CountCustomersAsync()
+            CustomerCount = await _customerRepository.CountCustomersAsync(),
+            CampaignCount = await _campaignRepository.CampaignCountAsync(),
+            CampaignUserNoteCount = await _campaignUserNoteRepository.CampaignUserNoteCountAsync(),
+            CampaignUserTaskCount = await _campaignUserTaskRepository.CampaignUserTaskCountAsync(),
         };
         ViewBag.Users = await _userRepository.GetAllUsersAsync();
         ViewBag.Events = await _eventRepository.GetAllEventsAsync();

@@ -3,3 +3,158 @@
 @{
     Layout = "_Layout";
 }
+
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-12 col-lg-8 offset-lg-2">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h1 class="text-gradient text-warning ubuntu-bold">Add A Campaign</h1>
+                <a asp-action="Index" asp-controller="Campaign" asp-area="Admin" class="btn bg-gradient-info ubuntu-bold">Back To Dashboard</a>
+            </div>
+            <div class="card-body p-5">
+
+                <form id="campaignForm" class="form" asp-action="AddCampaign" asp-controller="Campaign" asp-area="Admin" method="post">
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Title" class="form-label text-gradient text-info ubuntu-bold">Title</label>
+                                <input asp-for="Title" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Title"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Type" class="form-label text-gradient text-info ubuntu-bold">Type</label>
+                                <select asp-for="Type" id="Type" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                    <option value="Individual">Individual</option>
+                                    <option value="Enterprise">Enterprise</option>
+                                    <option value="Family Owned">Family Owned</option>
+                                    <option value="Sole Proprietor">Sole Proprietor</option>
+                                    <option value="Company">Company</option>
+                                    <option value="Undefined">Undefined</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Status" class="form-label text-gradient text-info ubuntu-bold">Status</label>
+                                <select asp-for="Status" id="Status" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                    <option value="Created">Created</option>
+                                    <option value="Processing">Processing</option>
+                                    <option value="Started">Started</option>
+                                    <option value="Midway">Midway</option>
+                                    <option value="Finished">Finished</option>
+                                    <option value="Turned In">Turned In</option>
+                                </select>
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="StartDate" class="form-label text-gradient text-info ubuntu-bold">Start Date</label>
+                                <input asp-for="StartDate" class="datepicker form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="StartDate">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="EndDate" class="form-label text-gradient text-info ubuntu-bold">End Date</label>
+                                <input asp-for="EndDate" class="datepicker form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="EndDate">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Budget" class="form-label text-gradient text-info ubuntu-bold">Budget</label>
+                                <input asp-for="Budget" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Budget">
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Spend" class="form-label text-gradient text-info ubuntu-bold">Spend</label>
+                                <input asp-for="Spend" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Spend">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="TargetAudience" class="form-label text-gradient text-info ubuntu-bold">Target Audience</label>
+                                <input asp-for="TargetAudience" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="TargetAudience">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Channel" class="form-label text-gradient text-info ubuntu-bold">Channel</label>
+                                <input asp-for="Channel" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Channel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Goals" class="form-label text-gradient text-info ubuntu-bold">Goals</label>
+                                <input asp-for="Goals" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Goals">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="RevenueTarget" class="form-label text-gradient text-info ubuntu-bold">Revenue Target</label>
+                                <input asp-for="RevenueTarget" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="RevenueTarget">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="ActualRevenue" class="form-label text-gradient text-info ubuntu-bold">Actual Revenue</label>
+                                <input asp-for="ActualRevenue" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="ActualRevenue">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Impressions" class="form-label text-gradient text-info ubuntu-bold">Impressions</label>
+                                <input asp-for="Impressions" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Impressions">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Clicks" class="form-label text-gradient text-info ubuntu-bold">Clicks</label>
+                                <input asp-for="Clicks" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Clicks">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="LeadsGenerated" class="form-label text-gradient text-info ubuntu-bold">Leads Generated</label>
+                                <input asp-for="LeadsGenerated" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="LeadsGenerated">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Conversions" class="form-label text-gradient text-info ubuntu-bold">Conversions</label>
+                                <input asp-for="Conversions" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Conversions">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="ROI" class="form-label text-gradient text-info ubuntu-bold">Return On Investment</label>
+                                <input asp-for="ROI" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="ROI">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="form-label text-gradient text-info ubuntu-bold">Description</label>
+                                <textarea asp-for="Description" cols="10" rows="5" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-3 mb-3">
+                        <button type="submit" class="btn btn-primary" id="saveEventBtn">Add Campaign</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

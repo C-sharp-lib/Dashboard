@@ -8,39 +8,116 @@
 }
 
 <div class="row mt-11 mb-3" xmlns="">
-    <div class="col-12 col-md-12 col-lg-7">
-        @*<div class="card shadow-lg bg-gradient-dark">
-            <div class="card-header bg-gradient-dark">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active ubuntu-bold text-gradient text-warning bg-gradient-dark tab-styles" id="users-tab" data-bs-toggle="tab" data-bs-target="#users-tab-pane" type="button" role="tab" aria-controls="users-tab-pane" aria-selected="true">Users</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link ubuntu-bold text-gradient text-warning bg-gradient-dark tab-styles" id="events-tab" data-bs-toggle="tab" data-bs-target="#events-tab-pane" type="button" role="tab" aria-controls="events-tab-pane" aria-selected="false">Events</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link ubuntu-bold text-gradient text-warning bg-gradient-dark tab-styles" id="products-tab" data-bs-toggle="tab" data-bs-target="#products-tab-pane" type="button" role="tab" aria-controls="products-tab-pane" aria-selected="false">Products</button>
-                    </li>
-                </ul>
-            </div>
-            <div class="card-body p-4">
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="users-tab-pane" role="tabpanel" aria-labelledby="users-tab" tabindex="0">
-                        @await Html.PartialAsync("_Partials/_users-list", Model.Users)
+    <div class="col-12 col-md-12 col-lg-6">
+        <div class="row mt-2 mb-2">
+            <div class="col-12 col-md-4 mt-1">
+
+                <div class="card card-stats bg-gradient-dark shadow-lg">
+                    <div class="card-header bg-gradient-dark card-header-icon p-1">
+                        <div class="card-icon bg-gradient-info">
+                            <i class="fa-regular fa-compass text-white"></i>
+                        </div>
+                        <p class="card-category text-white me-3 ubuntu-bold">Campaigns</p>
+                        <h3 class="card-title text-gradient text-info me-3 ubuntu-bold">
+                            <small>@Model.CampaignCount</small>
+                        </h3>
                     </div>
-                    <div class="tab-pane fade" id="events-tab-pane" role="tabpanel" aria-labelledby="events-tab" tabindex="0">
-                        @await Html.PartialAsync("_Partials/_events-list", Model.Events)
-                    </div>
-                    <div class="tab-pane fade" id="products-tab-pane" role="tabpanel" aria-labelledby="products-tab" tabindex="0">
-                        @await Html.PartialAsync("_Partials/_products-list", Model.Products)
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!--            <i class="fa-solid fa-circle-exclamation text-gradient text-danger"></i>-->
+                            <!--            <a href="#">Get More Space...</a>-->
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>*@
+            <div class="col-12 col-md-4 mt-1">
+                <div class="card card-stats bg-gradient-dark shadow-lg">
+                    <div class="card-header bg-gradient-dark card-header-icon p-1">
+                        <div class="card-icon bg-gradient-success">
+                            <i class="fa-regular fa-note-sticky text-white"></i>
+                        </div>
+                        <p class="card-category text-white me-3 ubuntu-bold">Campaign Notes</p>
+                        <h3 class="card-title text-gradient text-success me-3 ubuntu-bold">@Model.CampaignUserNoteCount</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!--            <i class="fa-regular fa-calendar-days text-gradient text-primary"></i> Last 24 Hours-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mt-1">
+                <div class="card card-stats bg-gradient-dark shadow-lg">
+                    <div class="card-header bg-gradient-dark card-header-icon p-1">
+                        <div class="card-icon bg-gradient-warning">
+                            <i class="fa-solid fa-list-check text-white"></i>
+                        </div>
+                        <p class="card-category text-white me-3 ubuntu-bold">Campaign Tasks</p>
+                        <h3 class="card-title text-gradient text-primary me-3 ubuntu-bold">@Model.CampaignUserTaskCount</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!--            <i class="fa-solid fa-location-dot text-gradient text-success"></i> Tracked from Github-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12 col-md-4 mt-1">
+                <div class="card card-stats bg-gradient-dark shadow-lg">
+                    <div class="card-header bg-gradient-dark card-header-icon p-1">
+                        <div class="card-icon bg-gradient-warning">
+                            <i class="fa-solid fa-list-check text-white"></i>
+                        </div>
+                        <p class="card-category text-white me-3 ubuntu-bold">Orders</p>
+                        <h3 class="card-title text-gradient text-primary me-3 ubuntu-bold">200</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!--            <i class="fa-solid fa-location-dot text-gradient text-success"></i> Tracked from Github-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mt-1">
+                <div class="card card-stats bg-gradient-dark shadow-lg">
+                    <div class="card-header bg-gradient-dark card-header-icon p-1">
+                        <div class="card-icon bg-gradient-warning">
+                            <i class="fa-solid fa-list-check text-white"></i>
+                        </div>
+                        <p class="card-category text-white me-3 ubuntu-bold">Leads</p>
+                        <h3 class="card-title text-gradient text-primary me-3 ubuntu-bold">1020</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!--            <i class="fa-solid fa-location-dot text-gradient text-success"></i> Tracked from Github-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mt-1">
+                <div class="card card-stats bg-gradient-dark shadow-lg">
+                    <div class="card-header bg-gradient-dark card-header-icon p-1">
+                        <div class="card-icon bg-gradient-danger">
+                            <i class="fa-solid fa-person text-white"></i>
+                        </div>
+                        <p class="card-category text-white me-3 ubuntu-bold">Customers</p>
+                        <h3 class="card-title me-3 text-gradient text-danger ubuntu-bold">@Model.CustomerCount</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!--            <i class="fa-regular fa-pen-to-square text-gradient text-info"></i> Just Updated-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-12 col-md-12 col-lg-5">
+
+    <div class="col-12 col-md-12 col-lg-6">
         <div class="row mt-2 mb-2">
-            <div class="col-12 col-md-6 mt-1">
+            <div class="col-12 col-md-4 mt-1">
 
                 <div class="card card-stats bg-gradient-dark shadow-lg">
                     <div class="card-header bg-gradient-dark card-header-icon p-1">
@@ -60,7 +137,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 mt-1">
+            <div class="col-12 col-md-4 mt-1">
                 <div class="card card-stats bg-gradient-dark shadow-lg">
                     <div class="card-header bg-gradient-dark card-header-icon p-1">
                         <div class="card-icon bg-gradient-success">
@@ -76,9 +153,25 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 col-md-4 mt-1">
+                <div class="card card-stats bg-gradient-dark shadow-lg">
+                    <div class="card-header bg-gradient-dark card-header-icon p-1">
+                        <div class="card-icon bg-gradient-warning">
+                            <i class="fa-solid fa-list-check text-white"></i>
+                        </div>
+                        <p class="card-category text-white me-3 ubuntu-bold">Campaign Tasks</p>
+                        <h3 class="card-title text-gradient text-primary me-3 ubuntu-bold">@Model.CampaignUserTaskCount</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!--            <i class="fa-solid fa-location-dot text-gradient text-success"></i> Tracked from Github-->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row mt-2">
-            <div class="col-12 col-md-6 mt-1">
+            <div class="col-12 col-md-4 mt-1">
                 <div class="card card-stats bg-gradient-dark shadow-lg">
                     <div class="card-header bg-gradient-dark card-header-icon p-1">
                         <div class="card-icon bg-gradient-warning">
@@ -94,7 +187,23 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-6 mt-1">
+            <div class="col-12 col-md-4 mt-1">
+                <div class="card card-stats bg-gradient-dark shadow-lg">
+                    <div class="card-header bg-gradient-dark card-header-icon p-1">
+                        <div class="card-icon bg-gradient-warning">
+                            <i class="fa-solid fa-list-check text-white"></i>
+                        </div>
+                        <p class="card-category text-white me-3 ubuntu-bold">Campaign Tasks</p>
+                        <h3 class="card-title text-gradient text-primary me-3 ubuntu-bold">@Model.CampaignUserTaskCount</h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <!--            <i class="fa-solid fa-location-dot text-gradient text-success"></i> Tracked from Github-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mt-1">
                 <div class="card card-stats bg-gradient-dark shadow-lg">
                     <div class="card-header bg-gradient-dark card-header-icon p-1">
                         <div class="card-icon bg-gradient-danger">
@@ -113,7 +222,6 @@
         </div>
     </div>
 </div>
-
 <div class="row mt-3 mb-11">
     <div class="col-12 col-md-12 col-lg-5">
         <div class="card shadow-lg bg-gradient-dark z-index-2">
@@ -255,8 +363,26 @@
             new Chart(ctx3, {
                 type: "bar",
                 data: {
-                    labels: ['2024', '2025'],
+                    labels: ['Totals Of Entities'],
                     datasets: [
+                        {
+                            label: 'Campaigns',
+                            data: [@Model.CampaignCount],
+                            borderColor: '#fd2345',
+                            backgroundColor: 'rgba(205,0,130,0.8)'
+                        },
+                        {
+                            label: 'Campaign Notes',
+                            data: [@Model.CampaignUserNoteCount],
+                            borderColor: 'rgb(50,205,50)',
+                            backgroundColor: 'rgba(250,192,55,0.8)'
+                        },
+                        {
+                            label: 'Campaign Tasks',
+                            data: [@Model.CampaignUserTaskCount],
+                            borderColor: 'rgb(50,250,250)',
+                            backgroundColor: 'rgba(50,50,250,0.8)'
+                        },
                         {
                             label: 'Users',
                             data: [@Model.UserCount],

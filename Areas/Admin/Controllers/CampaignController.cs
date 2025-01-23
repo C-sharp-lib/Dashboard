@@ -3,6 +3,7 @@ using Dash.Areas.Admin.Models;
 using Dash.Areas.Identity.Models;
 using Dash.Data;
 using Dash.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace Dash.Areas.Admin.Controllers;
 
 [Area("Admin")]
 [Route("[area]/[controller]/[action]")]
+[Authorize]
 public class CampaignController : Controller
 {
     private readonly ApplicationDbContext _context;
@@ -63,6 +65,18 @@ public class CampaignController : Controller
         }
         ViewBag.user = ActiveUser;
         return View(campaign);
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> AddCampaignPage()
+    {
+        if (ActiveUser == null)
+        {
+            _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
+            return RedirectToAction("Login", "Identity", new {area = "Identity"});
+        }
+        ViewBag.user = ActiveUser;
+        return View();
     }
 
     [HttpGet]

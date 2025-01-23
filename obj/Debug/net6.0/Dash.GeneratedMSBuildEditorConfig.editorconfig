@@ -15,6 +15,38 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Development\MVC\Dash\Dash
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Development/MVC/Dash/Dash/Areas/Admin/Views/Campaign/AddCampaignPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2FtcGFpZ25cQWRkQ2FtcGFpZ25QYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MVC/Dash/Dash/Areas/Admin/Views/Campaign/AddCampaignUserNotePage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2FtcGFpZ25cQWRkQ2FtcGFpZ25Vc2VyTm90ZVBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MVC/Dash/Dash/Areas/Admin/Views/Campaign/AddCampaignUserTaskPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2FtcGFpZ25cQWRkQ2FtcGFpZ25Vc2VyVGFza1BhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MVC/Dash/Dash/Areas/Admin/Views/Campaign/CampaignDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2FtcGFpZ25cQ2FtcGFpZ25EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MVC/Dash/Dash/Areas/Admin/Views/Campaign/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2FtcGFpZ25cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MVC/Dash/Dash/Areas/Admin/Views/Campaign/UpdateCampaignNotesPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2FtcGFpZ25cVXBkYXRlQ2FtcGFpZ25Ob3Rlc1BhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MVC/Dash/Dash/Areas/Admin/Views/Campaign/UpdateCampaignPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2FtcGFpZ25cVXBkYXRlQ2FtcGFpZ25QYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Development/MVC/Dash/Dash/Areas/Admin/Views/Campaign/UpdateCampaignTasksPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2FtcGFpZ25cVXBkYXRlQ2FtcGFpZ25UYXNrc1BhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Development/MVC/Dash/Dash/Areas/Admin/Views/Customer/AddCustomerPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ3VzdG9tZXJcQWRkQ3VzdG9tZXJQYWdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

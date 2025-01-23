@@ -10,7 +10,11 @@ public class AddCampaignViewModel
     public string Description { get; set; }
     public string Type { get; set; }
     public string Status { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime StartDate { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime EndDate { get; set; }
     [Precision(10,2)]
     public decimal Budget { get; set; }
@@ -61,7 +65,11 @@ public class AddCampaignUserTasksViewModel
     public string TaskTitle { get; set; }
     public string TaskDescription { get; set; }
     public string Priority { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime StartDate { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime EndDate { get; set; }
     public DateTime CreatedAt { get; set; }
     public AddCampaignUserTasksViewModel()
@@ -76,7 +84,11 @@ public class UpdateCampaignViewModel
     public string Description { get; set; }
     public string Type { get; set; }
     public string Status { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime StartDate { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime EndDate { get; set; }
     [Precision(10,2)]
     public decimal Budget { get; set; }
@@ -133,8 +145,12 @@ public class UpdateCampaignUserTasksViewModel
     [Required]
     public string Priority { get; set; }
     [Required]
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime StartDate { get; set; }
     [Required]
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime EndDate { get; set; }
     public DateTime UpdatedAt { get; set; }
     public UpdateCampaignUserTasksViewModel()

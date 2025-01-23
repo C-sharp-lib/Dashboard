@@ -146,7 +146,11 @@ nav.navbar-expand-lg {
 
 
 /*  Forms  */
-
+label {
+  font-size: 17px !important;
+  font-family: "Ubuntu", serif !important;
+  font-weight: 700 !important;
+}
 .validation-summary {
   list-style-type: none;
   color: tomato;
@@ -154,7 +158,9 @@ nav.navbar-expand-lg {
 .colorpick-eyedropper-input-trigger {
   display: none;
 }
-
+.btn-group > a > i {
+  font-size: 17px !important;
+}
 /*  End Forms  */
 
 .list-group {

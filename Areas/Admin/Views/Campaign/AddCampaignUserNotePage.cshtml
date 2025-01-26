@@ -1,4 +1,67 @@
-﻿@model Dash.Areas.Admin.Models.AddCampaignUserNotesViewModel
+﻿@using Dash.Areas.Admin.Models
+@model Dash.Areas.Admin.Models.AddCampaignUserNotesViewModel
 @{
     Layout = "_Layout";
+    
 }
+
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-12 col-lg-8 offset-lg-2">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h1 class="text-gradient text-warning ubuntu-bold">Add A Campaign User Note</h1>
+                <a asp-action="Index" asp-controller="Campaign" asp-area="Admin" class="btn bg-gradient-info ubuntu-bold">Back To Dashboard</a>
+            </div>
+            <div class="card-body p-5">
+
+                <form id="campaignUserNoteForm" class="form" asp-action="AddCampaignUserNote" asp-controller="Campaign" asp-area="Admin" method="post">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="CampaignId" class="form-label text-gradient text-info ubuntu-bold">Campaign</label>
+                                <select asp-for="CampaignId" id="CampaignId" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" style="cursor: pointer;">
+                                    @foreach (var camp in ViewBag.campaigns)
+                                    {
+                                        <option value="@camp.CampaignId">@camp.Title</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UserId" class="form-label text-gradient text-info ubuntu-bold">User</label>
+                                <select asp-for="UserId" id="UserId" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" style="cursor: pointer;">
+                                    @foreach (var user in ViewBag.users)
+                                    {
+                                        <option value="@user.Id">@user.UserName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label asp-for="NoteTitle" class="form-label text-gradient text-info ubuntu-bold">Note Title</label>
+                                <input asp-for="NoteTitle" type="text"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label asp-for="NoteContent" class="form-label text-gradient text-info ubuntu-bold">Note Content</label>
+                                <textarea asp-for="NoteContent" type="text"
+                                          class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold" cols="10" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-3 mb-3">
+                        <button type="submit" class="btn btn-primary" id="saveEventBtn">Add Campaign User Note</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

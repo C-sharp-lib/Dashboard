@@ -87,6 +87,9 @@ public class CampaignController : Controller
             _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
             return RedirectToAction("Login", "Identity", new {area = "Identity"});
         }
+
+        ViewBag.campaigns = await _context.Campaigns.ToListAsync();
+        ViewBag.users = await _context.Users.ToListAsync();
         ViewBag.user = ActiveUser;
         return View();
     }
@@ -99,6 +102,9 @@ public class CampaignController : Controller
             _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
             return RedirectToAction("Login", "Identity", new {area = "Identity"});
         }
+
+        ViewBag.campaigns = await _context.Campaigns.ToListAsync();
+        ViewBag.users = await _context.Users.ToListAsync();
         ViewBag.user = ActiveUser;
         return View();
     }
@@ -157,7 +163,28 @@ public class CampaignController : Controller
         return View(campaign);
     }
 
-    
+    [HttpGet("{id}")]
+    public async Task<IActionResult> CampaignUserNoteDetails(int id)
+    {
+        var note = await _campaignUserNoteRepository.GetCampaignUserNoteByIdAsync(id);
+        if (ActiveUser == null)
+        {
+            _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
+            return RedirectToAction("Login", "Identity", new {area = "Identity"});
+        }
+        return View(note);
+    }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> CampaignUserTaskDetails(int id)
+    {
+        var task = await _campaignUserTaskRepository.GetCampaignUserTaskByIdAsync(id);
+        if (ActiveUser == null)
+        {
+            _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
+            return RedirectToAction("Login", "Identity", new {area = "Identity"});
+        }
+        return View(task);
+    }
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> AddCampaign([FromForm] AddCampaignViewModel model)
@@ -248,6 +275,8 @@ public class CampaignController : Controller
 
         try
         {
+            ViewBag.campaigns = await _campaignRepository.GetAllCampaignsAsync();
+            ViewBag.users = await _context.Users.ToListAsync();
             await _campaignUserNoteRepository.AddCampaignUserNoteAsync(model);
             _notyfService.Success("Campaign User Note Added.");
             ViewBag.user = ActiveUser;

@@ -4,3 +4,132 @@
     Layout = "_Layout";
 }
 
+<div class="container">
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-12">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h3 class="text-gradient text-info ubuntu-bold">@Model.Title's Details</h3>
+                <div class="btn-group m-3">
+                    <a class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip" asp-action="Index" asp-controller="Customer" asp-area="Admin" title="Go back to the campaign list"><i class="fa-solid fa-backward-step"></i></a>
+                    <a class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip" asp-action="UpdateCampaign" asp-controller="Campaign" asp-area="Admin" asp-route-id="@Model.CampaignId" title="Edit @Model.Title"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <form asp-action="DeleteCampaign" asp-controller="Campaign" asp-area="Admin" asp-route-id="@Model.CampaignId" method="post">
+                        <button type="submit" class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" title="Delete @Model.Title"><i class="fa-solid fa-trash"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <span class="text-gradient text-info ubuntu-bold">Campaign User Notes</span> 
+                <div class="btn-group m-3">
+                    <a class="btn bg-gradient-dark text-success shadow-md ubuntu-bold btn-tooltip" asp-action="AddCampaignUserNotePage" asp-controller="Campaign" asp-area="Admin" title="Add Campaign User Note"><i class="fa-solid fa-plus"></i></a>
+                </div>
+                <table class="table table-hover table-striped table-borderless">
+                        <thead>
+                        <tr>
+                            <th class="text-gradient text-warning ubuntu-bold">Campaign Title</th>
+                            <th class="text-gradient text-warning ubuntu-bold">User Assigned</th>
+                            <th class="text-gradient text-warning ubuntu-bold">Note Title</th>
+                            <th class="text-gradient text-warning ubuntu-bold">Note Content</th>
+                            <th class="text-gradient text-warning ubuntu-bold">Created Date</th>
+                            <th class="text-gradient text-warning ubuntu-bold">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if (Model.CampaignUserNotes.Count > 0)
+                        {
+                            @foreach (var notes in Model.CampaignUserNotes)
+                            {
+                                <tr>
+                                    <td class="text-white ubuntu">@notes.Campaign.Title</td>
+                                    <td class="text-white ubuntu">@notes.User.UserName</td>
+                                    <td class="text-white ubuntu">@Model.TruncateWords(notes.NoteTitle, 5)</td>
+                                    <td class="text-white ubuntu">@Model.TruncateWords(notes.NoteContent, 5)</td>
+                                    <td class="text-white ubuntu">@notes.CreatedAt.ToString("d")</td>
+                                    <td>
+                                        @Html.ActionLink("", "CampaignUserNoteDetails", "Campaign", new { id = notes.CampaignUserNoteId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-list text-gradient text-info text-sm", title = $"View {notes.NoteTitle}" })
+                                        @Html.ActionLink("", "UpdateCampaignUserNote", "Campaign", new { id = notes.CampaignUserNoteId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-pen-to-square text-gradient text-warning text-sm", title = $"Edit {notes.NoteTitle}" })
+                                        @Html.ActionLink("", "DeleteCampaignUserNote", "Campaign", new { id = notes.CampaignUserNoteId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-trash text-gradient text-danger text-sm", title = $"Delete {notes.NoteTitle}" })
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td class="text-white ubuntu">No Campaign User Notes</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+          
+                <h6 class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold">Campaign User Tasks</span>
+                    <div class="btn-group m-3">
+                        <a class="btn bg-gradient-dark text-success shadow-md ubuntu-bold btn-tooltip" asp-action="AddCampaignUserTaskPage" asp-controller="Campaign" asp-area="Admin" title="Add Campaign User Task"><i class="fa-solid fa-plus"></i></a>
+                    </div>
+                    <table class="table table-hover table-striped table-borderless">
+                        <thead>
+                        <tr>
+                            <th class="text-gradient text-warning ubuntu-bold">Campaign Title</th>
+                            <th class="text-gradient text-warning ubuntu-bold">User Assigned</th>
+                            <th class="text-gradient text-warning ubuntu-bold">Task Title</th>
+                            <th class="text-gradient text-warning ubuntu-bold">Task Description</th>
+                            <th class="text-gradient text-warning ubuntu-bold">Time Frame</th>
+                            <th class="text-gradient text-warning ubuntu-bold">Created Date</th>
+                            <th class="text-gradient text-warning ubuntu-bold">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if (Model.CampaignUserTasks.Count > 0)
+                        {
+                            @foreach (var tasks in Model.CampaignUserTasks)
+                            {
+                                <tr>
+                                    <td class="text-white ubuntu">@tasks.Campaign.Title</td>
+                                    <td class="text-white ubuntu">@tasks.User.UserName</td>
+                                    <td class="text-white ubuntu">@Model.TruncateWords(tasks.TaskTitle, 5)</td>
+                                    <td class="text-white ubuntu">@Model.TruncateWords(tasks.TaskDescription, 5)</td>
+                                    <td class="text-white ubuntu">@Model.StartDate.ToString("d") - @Model.EndDate.ToString("d")</td>
+                                    <td class="text-white ubuntu">@tasks.CreatedAt.ToString("d")</td>
+                                    <td>
+                                        @Html.ActionLink("", "CampaignUserTaskDetails", "Campaign", new { id = tasks.CampaignUserTaskId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-list text-gradient text-info text-sm", title = $"View {tasks.TaskTitle}" })
+                                        @Html.ActionLink("", "UpdateCampaignUserTasks", "Campaign", new { id = tasks.CampaignUserTaskId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-pen-to-square text-gradient text-warning text-sm", title = $"Edit {tasks.TaskTitle}" })
+                                        @Html.ActionLink("", "DeleteCampaignUserTasks", "Campaign", new { id = tasks.CampaignUserTaskId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-trash text-gradient text-danger text-sm", title = $"Delete {tasks.TaskTitle}" })
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td class="text-white ubuntu">No Campaign User Tasks</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </h6>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold lead">Income</span><br>
+                    <span class="text-gradient text-success ubuntu-bold lead">Budget</span>: @Model.Budget.ToString("C") | <span class="text-gradient text-success ubuntu-bold lead">Actual</span>: @Model.ActualRevenue.ToString("C") | <span class="text-gradient text-success ubuntu-bold lead">Target</span>: @Model.RevenueTarget.ToString("C") 
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold lead">Spend</span><br>
+                    @Model.Spend.ToString("C")
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold lead">Social</span><br>
+                    <span class="text-gradient text-success ubuntu-bold lead">Channel</span>: @Model.Channel | <span class="text-gradient text-success ubuntu-bold lead">Target Audience</span>: @Model.TargetAudience
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold lead">Productivity</span><br>
+                    <span class="text-gradient text-success ubuntu-bold lead">Clicks</span>: @Model.Clicks | <span class="text-gradient text-success ubuntu-bold lead">Impressions</span>: @Model.Impressions | <span class="text-gradient text-success ubuntu-bold lead">Conversions</span>: @Model.Conversions
+                </p>
+                <p class="text-white ubuntu">
+                    <span class="text-gradient text-info ubuntu-bold lead">Goals</span><br>
+                    @Model.Goals
+                </p>
+            </div>
+            </div>
+        </div>
+</div>
+</div>

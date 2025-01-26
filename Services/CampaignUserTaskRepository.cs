@@ -1,5 +1,6 @@
 ﻿using Dash.Areas.Admin.Models;
 using Dash.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dash.Services;
@@ -16,12 +17,18 @@ public class CampaignUserTaskRepository : Repository<CampaignUserTasks>, ICampai
 
     public async Task<IEnumerable<CampaignUserTasks>> GetAllCampaignUserTasksAsync()
     {
-        return await _dbSet.ToListAsync();
+        return await _dbSet
+            .Include(c => c.Campaign)
+            .Include(c => c.User)
+            .ToListAsync();
     }
 
     public async Task<CampaignUserTasks> GetCampaignUserTaskByIdAsync(int id)
     {
-        var campaignUserTasks = await _dbSet.FirstOrDefaultAsync(c => c.CampaignUserTaskId == id);
+        var campaignUserTasks = await _dbSet
+            .Include(c => c.Campaign)
+            .Include(c => c.User)
+            .FirstOrDefaultAsync(c => c.CampaignUserTaskId == id);
         if (campaignUserTasks == null)
         {
             throw new NullReferenceException("Campaign user task not found");
@@ -29,7 +36,7 @@ public class CampaignUserTaskRepository : Repository<CampaignUserTasks>, ICampai
         return campaignUserTasks;
     }
 
-    public async Task AddCampaignUserTaskAsync(AddCampaignUserTasksViewModel model)
+    public async Task AddCampaignUserTaskAsync([FromForm] AddCampaignUserTasksViewModel model)
     {
         var campaignUserTask = new CampaignUserTasks
         {
@@ -46,13 +53,9 @@ public class CampaignUserTaskRepository : Repository<CampaignUserTasks>, ICampai
         
     }
 
-    public async Task UpdateCampaignUserTaskAsync(int id, UpdateCampaignUserTasksViewModel model)
+    public async Task UpdateCampaignUserTaskAsync(int id, [FromForm] UpdateCampaignUserTasksViewModel model)
     {
-        var campaignUserTask = await _dbSet.FirstOrDefaultAsync(c => c.CampaignUserTaskId == id);
-        if (campaignUserTask == null)
-        {
-            throw new NullReferenceException("Campaign user task not found");
-        }
+        var campaignUserTask = await GetCampaignUserTaskByIdAsync(id);
         campaignUserTask.TaskTitle = model.TaskTitle;
         campaignUserTask.TaskDescription = model.TaskDescription;
         campaignUserTask.Priority = model.Priority;

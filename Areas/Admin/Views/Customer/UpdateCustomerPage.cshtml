@@ -54,8 +54,8 @@
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
-                                <label asp-for="State" class="form-label text-gradient text-info ubuntu-bold">State</label>
-                                <select asp-for="State" value="@Model.State" class="form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark" id="State">
+                                <label asp-for="State" class="form-label text-gradient text-info ubuntu-bold">State</label><br>
+                                <select asp-for="State" value="@Model.State" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" style="cursor: pointer;" id="State">
                                     <option disabled="disabled">Select A State</option>
                                     <option value="AL">Alabama</option>
                                     <option value="AK">Alaska</option>
@@ -113,16 +113,16 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-md-3">
+                        <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="ZipCode" class="form-label text-gradient text-info ubuntu-bold">Zip Code</label>
                                 <input asp-for="ZipCode" value="@Model.ZipCode" type="text" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="ZipCode"/>
                             </div>
                         </div>
-                        <div class="col-12 col-md-3">
+                        <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Country" class="form-label text-gradient text-info ubuntu-bold">Country</label>
-                                <select asp-for="Country" value="@Model.Country" class="form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark" id="Country">
+                                <select asp-for="Country" value="@Model.Country" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" style="cursor: pointer;" id="Country">
                                     <option value="AFG">Afghanistan</option>
                                     <option value="ALA">Åland Islands</option>
                                     <option value="ALB">Albania</option>
@@ -375,7 +375,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-12 col-md-3">
+                        <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="PhoneNumber" class="form-label text-gradient text-info ubuntu-bold">Phone Number</label>
                                 <input asp-for="PhoneNumber" value="@Model.PhoneNumber" type="text" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="PhoneNumber"/>

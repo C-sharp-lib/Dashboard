@@ -3,3 +3,81 @@
     Layout = "_Layout";
 }
 
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-12 col-lg-8 offset-lg-2">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h1 class="text-gradient text-warning ubuntu-bold">Update @Model.TaskTitle</h1>
+                <a asp-action="Index" asp-controller="Campaign" asp-area="Admin" class="btn bg-gradient-info ubuntu-bold">Back To Dashboard</a>
+            </div>
+            <div class="card-body p-5">
+                <form id="campaignUserTaskForm" class="form" asp-action="UpdateCampaignTasksPage" asp-controller="Campaign" asp-route-id="@Model.CampaignUserTaskId" asp-area="Admin" method="post">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="CampaignId" class="form-label text-gradient text-info ubuntu-bold">Campaign</label>
+                                <select asp-for="CampaignId" value="@Model.CampaignId" id="CampaignId" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                    @foreach (var campaigns in ViewBag.campaigns)
+                                    {
+                                        <option value="@campaigns.CampaignId">@campaigns.Title</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UserId" class="form-label text-gradient text-info ubuntu-bold">User</label>
+                                <select asp-for="UserId" value="@Model.UserId" id="UserId" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                    @foreach (var user in ViewBag.users)
+                                    {
+                                        <option value="@user.Id">@user.UserName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <label asp-for="TaskTitle" class="form-label text-gradient text-info ubuntu-bold">Task Title</label>
+                                <input asp-for="TaskTitle" type="text" value="@Model.TaskTitle"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <label asp-for="Priority" class="form-label text-gradient text-info ubuntu-bold">Priority</label>
+                                <input asp-for="Priority" type="text" value="@Model.Priority"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <label asp-for="StartDate" class="form-label text-gradient text-info ubuntu-bold">Start Date</label>
+                                @Html.TextBox("StartDate", Model.StartDate.ToString("MM/dd/yyyy"), new {@class="datepicker form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold"})
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="form-group">
+                                <label asp-for="EndDate" class="form-label text-gradient text-info ubuntu-bold">End Date</label>
+                                @Html.TextBox("EndDate", Model.EndDate.ToString("MM/dd/yyyy"), new {@class="datepicker form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold"})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label asp-for="TaskDescription" class="form-label text-gradient text-info ubuntu-bold">Description</label>
+                                @Html.TextArea("TaskDescription", Model.TaskDescription, new {@class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold", cols=10, rows=5})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-3 mb-3">
+                        <button type="submit" class="btn btn-primary" id="saveEventBtn">Update Campaign Uer Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

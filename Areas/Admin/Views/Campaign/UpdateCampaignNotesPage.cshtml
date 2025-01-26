@@ -2,3 +2,63 @@
 @{
     Layout = "_Layout";
 }
+
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-12 col-lg-8 offset-lg-2">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h1 class="text-gradient text-warning ubuntu-bold">Update @Model.Campaign.Title's Notes</h1>
+                <a asp-action="Index" asp-controller="Campaign" asp-area="Admin" class="btn bg-gradient-info ubuntu-bold">Back To Dashboard</a>
+            </div>
+            <div class="card-body p-5">
+
+                <form id="campaignUserNoteForm" class="form" asp-action="UpdateCampaignUserNote" asp-controller="Campaign" asp-route-id="@Model.CampaignUserNoteId" asp-area="Admin" method="post">
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="CampaignId" class="form-label text-gradient text-info ubuntu-bold">Campaign</label>
+                                <select asp-for="CampaignId" id="CampaignId" value="@Model.CampaignId" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                    @foreach (var campaigns in ViewBag.campaigns)
+                                    {
+                                        <option value="@campaigns.CampaignId">@campaigns.Title</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                <label asp-for="UserId" class="form-label text-gradient text-info ubuntu-bold">User</label>
+                                <select asp-for="UserId" id="UserId" value="@Model.UserId" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                    @foreach (var user in ViewBag.users)
+                                    {
+                                        <option value="@user.Id">@user.UserName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label asp-for="NoteTitle" class="form-label text-gradient text-info ubuntu-bold">Note Title</label>
+                                <input asp-for="NoteTitle" type="text" value="@Model.NoteTitle"
+                                       class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12">
+                            <div class="form-group">
+                                <label asp-for="NoteContent" class="form-label text-gradient text-info ubuntu-bold">Note Content</label>
+                                @Html.TextArea("NoteContent", Model.NoteContent, new {@class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold", rows=5, cols=10})
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-3 mb-3">
+                        <button type="submit" class="btn btn-primary" id="updateCampaignUserNote">Update Campaign User Note</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

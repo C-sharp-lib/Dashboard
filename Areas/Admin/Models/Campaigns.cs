@@ -37,7 +37,7 @@ public class Campaigns
     public ICollection<CampaignUserNotes> CampaignUserNotes { get; set; }
     public ICollection<CampaignUserTasks> CampaignUserTasks { get; set; }
         
-    public string TruncateWordsThree(string text, int wordCount = 3)
+    public string TruncateWords(string text, int wordCount)
     {
         if (string.IsNullOrEmpty(text))
             return string.Empty;

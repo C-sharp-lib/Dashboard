@@ -33,7 +33,51 @@ body {
   margin-bottom: 60px;
 }
 
+/* Colors */
 
+.moss {
+  background-image: linear-gradient(120deg, #134e5e, #71b280);
+  background-image: -moz-linear-gradient(120deg, #134e5e, #71b280);
+  background-image: -webkit-linear-gradient(120deg, #134e5e, #71b280);
+  background-image: -ms-linear-gradient(120deg, #134e5e, #71b280);
+}
+.violet {
+  background-image: linear-gradient(120deg, #4776e6, #8e54e9);
+  background-image: -webkit-linear-gradient(120deg, #4776e6, #8e54e9);
+  background-image: -moz-linear-gradient(120deg, #4776e6, #8e54e9);
+  background-image: -ms-linear-gradient(120deg, #4776e6, #8e54e9);
+}
+.steel-gray {
+  background-image: linear-gradient(120deg, #1f1c2c, #928dab);
+  background-image: -webkit-linear-gradient(120deg, #1f1c2c, #928dab);
+  background-image: -moz-linear-gradient(120deg, #1f1c2c, #928dab);
+  background-image: -ms-linear-gradient(120deg, #1f1c2c, #928dab);
+}
+.cherry {
+  background-image: linear-gradient(120deg, #eb3349, #f45c43);
+  background-image: -webkit-linear-gradient(120deg, #eb3349, #f45c43);
+  background-image: -moz-linear-gradient(120deg, #eb3349, #f45c43);
+  background-image: -ms-linear-gradient(120deg, #eb3349, #f45c43);
+}
+.striped-blue-green {
+  background-image: linear-gradient(120deg, #1fa2ff, #12d8fa, #a6ffcb);
+  background-image: -webkit-linear-gradient(120deg, #1fa2ff, #12d8fa, #a6ffcb);
+  background-image: -moz-linear-gradient(120deg, #1fa2ff, #12d8fa, #a6ffcb);
+  background-image: -ms-linear-gradient(120deg, #1fa2ff, #12d8fa, #a6ffcb);
+}
+.aqua-marine {
+  background-image: linear-gradient(120deg, #1a2980, #26d0ce);
+  background-image: -webkit-linear-gradient(120deg, #1a2980, #26d0ce);
+  background-image: -moz-linear-gradient(120deg, #1a2980, #26d0ce);
+  background-image: -ms-linear-gradient(120deg, #1a2980, #26d0ce);
+}
+.maroon {
+  background-image: linear-gradient(120deg, #aa076b, #61045f);
+  background-image: -webkit-linear-gradient(120deg, #aa076b, #61045f);
+  background-image: -moz-linear-gradient(120deg, #aa076b, #61045f);
+  background-image: -ms-linear-gradient(120deg, #aa076b, #61045f);
+}
+/* END Colors */
 /*  Fonts  */
 
 .ubuntu-light {
@@ -160,6 +204,12 @@ label {
 }
 .btn-group > a > i {
   font-size: 17px !important;
+}
+.display-inline {
+  display: inline !important;
+}
+select {
+  cursor: pointer !important;
 }
 /*  End Forms  */
 

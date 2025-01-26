@@ -17,6 +17,16 @@ public class CampaignUserNotes
     public AppUser User { get; set; }
     public string NoteTitle { get; set; }
     public string NoteContent { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime CreatedAt { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime UpdatedAt { get; set; }
+
+    public CampaignUserNotes()
+    {
+        CreatedAt = DateTime.Now;
+        UpdatedAt = DateTime.Now;
+    }
 }

@@ -12,7 +12,7 @@
                 <h3 class="text-gradient text-info ubuntu-bold">@Model.Title's Details</h3>
                 <div class="btn-group m-3">
                     <a class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip" asp-action="Index" asp-controller="Customer" asp-area="Admin" title="Go back to the campaign list"><i class="fa-solid fa-backward-step"></i></a>
-                    <a class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip" asp-action="UpdateCampaign" asp-controller="Campaign" asp-area="Admin" asp-route-id="@Model.CampaignId" title="Edit @Model.Title"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip" asp-action="UpdateCampaignPage" asp-controller="Campaign" asp-area="Admin" asp-route-id="@Model.CampaignId" title="Edit @Model.Title"><i class="fa-solid fa-pen-to-square"></i></a>
                     <form asp-action="DeleteCampaign" asp-controller="Campaign" asp-area="Admin" asp-route-id="@Model.CampaignId" method="post">
                         <button type="submit" class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" title="Delete @Model.Title"><i class="fa-solid fa-trash"></i></button>
                     </form>
@@ -23,9 +23,9 @@
                 <div class="btn-group m-3">
                     <a class="btn bg-gradient-dark text-success shadow-md ubuntu-bold btn-tooltip" asp-action="AddCampaignUserNotePage" asp-controller="Campaign" asp-area="Admin" title="Add Campaign User Note"><i class="fa-solid fa-plus"></i></a>
                 </div>
-                <table class="table table-hover table-striped table-borderless">
+                <table class="table table-hover table-striped table-borderless table-sm table-responsive table-responsive-sm">
                         <thead>
-                        <tr>
+                        <tr class="text-center p-3">
                             <th class="text-gradient text-warning ubuntu-bold">Campaign Title</th>
                             <th class="text-gradient text-warning ubuntu-bold">User Assigned</th>
                             <th class="text-gradient text-warning ubuntu-bold">Note Title</th>
@@ -39,16 +39,18 @@
                         {
                             @foreach (var notes in Model.CampaignUserNotes)
                             {
-                                <tr>
-                                    <td class="text-white ubuntu">@notes.Campaign.Title</td>
+                                <tr class="text-center p-3">
+                                    <td class="text-white ubuntu">@Model.TruncateWords(notes.Campaign.Title, 3)</td>
                                     <td class="text-white ubuntu">@notes.User.UserName</td>
-                                    <td class="text-white ubuntu">@Model.TruncateWords(notes.NoteTitle, 5)</td>
-                                    <td class="text-white ubuntu">@Model.TruncateWords(notes.NoteContent, 5)</td>
-                                    <td class="text-white ubuntu">@notes.CreatedAt.ToString("d")</td>
-                                    <td>
-                                        @Html.ActionLink("", "CampaignUserNoteDetails", "Campaign", new { id = notes.CampaignUserNoteId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-list text-gradient text-info text-sm", title = $"View {notes.NoteTitle}" })
-                                        @Html.ActionLink("", "UpdateCampaignUserNote", "Campaign", new { id = notes.CampaignUserNoteId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-pen-to-square text-gradient text-warning text-sm", title = $"Edit {notes.NoteTitle}" })
-                                        @Html.ActionLink("", "DeleteCampaignUserNote", "Campaign", new { id = notes.CampaignUserNoteId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-trash text-gradient text-danger text-sm", title = $"Delete {notes.NoteTitle}" })
+                                    <td class="text-white ubuntu">@Model.TruncateWords(notes.NoteTitle, 3)</td>
+                                    <td class="text-white ubuntu">@Model.TruncateWords(notes.NoteContent, 3)</td>
+                                    <td class="text-white ubuntu">@String.Format("{0:MM/dd/yyyy}", notes.CreatedAt)</td>
+                                    <td class="btn-group btn-group-sm">
+                                        <a asp-action="CampaignUserNoteDetails" asp-controller="Campaign" asp-area="Admin" asp-route-id="@notes.CampaignUserNoteId" title="View ID: @notes.CampaignUserNoteId" class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip"><i class="fa-solid fa-list text-gradient text-info text-sm"></i></a>
+                                        <a asp-action="UpdateCampaignNotesPage" asp-controller="Campaign" asp-area="Admin" asp-route-id="@notes.CampaignUserNoteId" title="Update ID: @notes.CampaignUserNoteId" class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip"><i class="fa-solid fa-pen-to-square text-gradient text-warning text-sm"></i></a>
+                                        <form asp-action="DeleteCampaignUserNote" asp-controller="Campaign" asp-route-id="@notes.CampaignUserNoteId" asp-area="Admin" method="post">
+                                            <button type="submit" class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" title="Delete ID: @notes.CampaignUserNoteId"><i class="fa-solid fa-trash text-gradient text-danger text-sm"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             }
@@ -67,9 +69,9 @@
                     <div class="btn-group m-3">
                         <a class="btn bg-gradient-dark text-success shadow-md ubuntu-bold btn-tooltip" asp-action="AddCampaignUserTaskPage" asp-controller="Campaign" asp-area="Admin" title="Add Campaign User Task"><i class="fa-solid fa-plus"></i></a>
                     </div>
-                    <table class="table table-hover table-striped table-borderless">
+                    <table class="table table-hover table-striped table-borderless table-sm table-responsive table-responsive-sm">
                         <thead>
-                        <tr>
+                        <tr class="text-center p-3">
                             <th class="text-gradient text-warning ubuntu-bold">Campaign Title</th>
                             <th class="text-gradient text-warning ubuntu-bold">User Assigned</th>
                             <th class="text-gradient text-warning ubuntu-bold">Task Title</th>
@@ -84,17 +86,19 @@
                         {
                             @foreach (var tasks in Model.CampaignUserTasks)
                             {
-                                <tr>
-                                    <td class="text-white ubuntu">@tasks.Campaign.Title</td>
+                                <tr class="text-center p-3">
+                                    <td class="text-white ubuntu">@Model.TruncateWords(tasks.Campaign.Title, 3)</td>
                                     <td class="text-white ubuntu">@tasks.User.UserName</td>
-                                    <td class="text-white ubuntu">@Model.TruncateWords(tasks.TaskTitle, 5)</td>
-                                    <td class="text-white ubuntu">@Model.TruncateWords(tasks.TaskDescription, 5)</td>
+                                    <td class="text-white ubuntu">@Model.TruncateWords(tasks.TaskTitle, 3)</td>
+                                    <td class="text-white ubuntu">@Model.TruncateWords(tasks.TaskDescription, 3)</td>
                                     <td class="text-white ubuntu">@Model.StartDate.ToString("d") - @Model.EndDate.ToString("d")</td>
-                                    <td class="text-white ubuntu">@tasks.CreatedAt.ToString("d")</td>
-                                    <td>
-                                        @Html.ActionLink("", "CampaignUserTaskDetails", "Campaign", new { id = tasks.CampaignUserTaskId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-list text-gradient text-info text-sm", title = $"View {tasks.TaskTitle}" })
-                                        @Html.ActionLink("", "UpdateCampaignUserTasks", "Campaign", new { id = tasks.CampaignUserTaskId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-pen-to-square text-gradient text-warning text-sm", title = $"Edit {tasks.TaskTitle}" })
-                                        @Html.ActionLink("", "DeleteCampaignUserTasks", "Campaign", new { id = tasks.CampaignUserTaskId, area = "Admin" }, new { @class = "m-3 btn-tooltip fa-solid fa-trash text-gradient text-danger text-sm", title = $"Delete {tasks.TaskTitle}" })
+                                    <td class="text-white ubuntu">@String.Format("{0:MM/dd/yyyy}", tasks.CreatedAt)</td>
+                                    <td class="btn-group btn-group-sm">
+                                        <a asp-action="CampaignUserTaskDetails" asp-controller="Campaign" asp-area="Admin" asp-route-id="@tasks.CampaignUserTaskId" title="View ID: @tasks.CampaignUserTaskId" class="btn bg-gradient-dark text-info shadow-md ubuntu-bold btn-tooltip"><i class="fa-solid fa-list text-gradient text-info text-sm"></i></a>
+                                        <a asp-action="UpdateCampaignTasksPage" asp-controller="Campaign" asp-area="Admin" asp-route-id="@tasks.CampaignUserTaskId" title="Update ID: @tasks.CampaignUserTaskId" class="btn bg-gradient-dark text-warning shadow-md ubuntu-bold btn-tooltip"><i class="fa-solid fa-pen-to-square text-gradient text-warning text-sm"></i></a>
+                                        <form asp-action="DeleteCampaignUserTasks" asp-controller="Campaign" asp-route-id="@tasks.CampaignUserTaskId" asp-area="Admin" method="post">
+                                            <button type="submit" class="btn bg-gradient-dark text-danger shadow-md ubuntu-bold btn-tooltip" title="Delete ID: @tasks.CampaignUserTaskId"><i class="fa-solid fa-trash text-gradient text-danger text-sm"></i></button>
+                                        </form>
                                     </td>
                                 </tr>
                             }

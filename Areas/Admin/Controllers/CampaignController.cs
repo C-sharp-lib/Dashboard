@@ -117,7 +117,13 @@ public class CampaignController : Controller
             _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
             return RedirectToAction("Login", "Identity", new {area = "Identity"});
         }
-        var campaign = await _campaignRepository.GetCampaignByIdAsync(id);
+
+        var campaign = await _context.Campaigns
+            .Include(c => c.CampaignUserNotes)
+            .ThenInclude(c => c.User)
+            .Include(c => c.CampaignUserTasks)
+            .ThenInclude(c => c.User)
+            .FirstOrDefaultAsync(c => c.CampaignId == id);
         if (campaign == null)
         {
             _notyfService.Error("Campaign not found.");
@@ -135,12 +141,18 @@ public class CampaignController : Controller
             _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
             return RedirectToAction("Login", "Identity", new {area = "Identity"});
         }
-        var campaign = await _campaignUserTaskRepository.GetCampaignUserTaskByIdAsync(id);
+
+        var campaign = await _context.CampaignUserTasks
+            .Include(c => c.Campaign)
+            .Include(c => c.User)
+            .FirstOrDefaultAsync(c => c.CampaignUserTaskId == id);
         if (campaign == null)
         {
             _notyfService.Error("Campaign user task not found.");
             return RedirectToAction("Index", "Campaign", new {area = "Admin"});
         }
+        ViewBag.users = await _context.Users.ToListAsync();
+        ViewBag.campaigns = await _context.Campaigns.ToListAsync();
         ViewBag.user = ActiveUser;
         return View(campaign);
     }
@@ -153,12 +165,18 @@ public class CampaignController : Controller
             _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
             return RedirectToAction("Login", "Identity", new {area = "Identity"});
         }
-        var campaign = await _campaignUserNoteRepository.GetCampaignUserNoteByIdAsync(id);
+
+        var campaign = await _context.CampaignUserNotes
+            .Include(c => c.Campaign)
+            .Include(c => c.User)
+            .FirstOrDefaultAsync(c => c.CampaignUserNoteId == id);
         if (campaign == null)
         {
             _notyfService.Error("Campaign user note not found.");
             return RedirectToAction("Index", "Campaign", new {area = "Admin"});
         }
+        ViewBag.users = await _context.Users.ToListAsync();
+        ViewBag.campaigns = await _context.Campaigns.ToListAsync();
         ViewBag.user = ActiveUser;
         return View(campaign);
     }
@@ -166,23 +184,43 @@ public class CampaignController : Controller
     [HttpGet("{id}")]
     public async Task<IActionResult> CampaignUserNoteDetails(int id)
     {
-        var note = await _campaignUserNoteRepository.GetCampaignUserNoteByIdAsync(id);
         if (ActiveUser == null)
         {
             _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
             return RedirectToAction("Login", "Identity", new {area = "Identity"});
         }
+
+        var note = await _context.CampaignUserNotes
+            .Include(c => c.Campaign)
+            .Include(c => c.User)
+            .FirstOrDefaultAsync(c => c.CampaignUserNoteId == id);
+        if (note == null)
+        {
+            _notyfService.Error("Campaign user note not found.");
+            return RedirectToAction("Index", "Campaign", new {area = "Admin"});
+        }
+        ViewBag.user = ActiveUser;
         return View(note);
     }
     [HttpGet("{id}")]
     public async Task<IActionResult> CampaignUserTaskDetails(int id)
     {
-        var task = await _campaignUserTaskRepository.GetCampaignUserTaskByIdAsync(id);
         if (ActiveUser == null)
         {
             _notyfService.Error("You are not logged in.  You need to be logged in to view this page.");
             return RedirectToAction("Login", "Identity", new {area = "Identity"});
         }
+
+        var task = await _context.CampaignUserTasks
+            .Include(c => c.Campaign)
+            .Include(c => c.User)
+            .FirstOrDefaultAsync(c => c.CampaignUserTaskId == id);
+        if (task == null)
+        {
+            _notyfService.Error("Campaign user note not found.");
+            return RedirectToAction("Index", "Campaign", new {area = "Admin"});
+        }
+        ViewBag.user = ActiveUser;
         return View(task);
     }
     [HttpPost]

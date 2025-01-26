@@ -20,6 +20,16 @@ public class CampaignUserTasks
     public string Priority { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime CreatedAt { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime UpdatedAt { get; set; }
+
+    public CampaignUserTasks()
+    {
+        CreatedAt = DateTime.Now;
+        UpdatedAt = DateTime.Now;
+    }
 }

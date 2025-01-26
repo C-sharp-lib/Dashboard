@@ -13,7 +13,11 @@ public class Campaigns
     public string Description { get; set; }
     public string Type { get; set; }
     public string Status { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime StartDate { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime EndDate { get; set; }
     [Precision(10,2)]
     public decimal Budget { get; set; }
@@ -32,7 +36,11 @@ public class Campaigns
     public int Conversions {  get; set; }
     [Precision(10,2)]
     public decimal ROI { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime CreatedAt { get; set; }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
     public DateTime UpdatedAt { get; set; }
     public ICollection<CampaignUserNotes> CampaignUserNotes { get; set; }
     public ICollection<CampaignUserTasks> CampaignUserTasks { get; set; }
@@ -44,5 +52,10 @@ public class Campaigns
         var words = text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
         if (words.Length <= wordCount) return text;
         return string.Join(" ", words.Take(wordCount)) + "...";
+    }
+    public Campaigns()
+    {
+        CreatedAt = DateTime.Now;
+        UpdatedAt = DateTime.Now;
     }
 }

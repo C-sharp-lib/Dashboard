@@ -17,7 +17,7 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label asp-for="CampaignId" class="form-label text-gradient text-info ubuntu-bold">Campaign</label>
-                                <select asp-for="CampaignId" id="CampaignId" value="@Model.CampaignId" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                <select asp-for="CampaignId" id="CampaignId" value="@Model?.CampaignId" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
                                     @foreach (var campaigns in ViewBag.campaigns)
                                     {
                                         <option value="@campaigns.CampaignId">@campaigns.Title</option>
@@ -28,7 +28,7 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label asp-for="UserId" class="form-label text-gradient text-info ubuntu-bold">User</label>
-                                <select asp-for="UserId" id="UserId" value="@Model.UserId" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                <select asp-for="UserId" id="UserId" value="@Model?.UserId" class="form-select form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
                                     @foreach (var user in ViewBag.users)
                                     {
                                         <option value="@user.Id">@user.UserName</option>
@@ -41,7 +41,7 @@
                         <div class="col-12 col-md-12">
                             <div class="form-group">
                                 <label asp-for="NoteTitle" class="form-label text-gradient text-info ubuntu-bold">Note Title</label>
-                                <input asp-for="NoteTitle" type="text" value="@Model.NoteTitle"
+                                <input asp-for="NoteTitle" type="text" value="@Model?.NoteTitle"
                                        class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold">
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                         <div class="col-12 col-md-12">
                             <div class="form-group">
                                 <label asp-for="NoteContent" class="form-label text-gradient text-info ubuntu-bold">Note Content</label>
-                                @Html.TextArea("NoteContent", Model.NoteContent, new {@class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold", rows=5, cols=10})
+                                @Html.TextArea("NoteContent", Model?.NoteContent, new {@class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu-bold", rows=5, cols=10})
                             </div>
                         </div>
                     </div>

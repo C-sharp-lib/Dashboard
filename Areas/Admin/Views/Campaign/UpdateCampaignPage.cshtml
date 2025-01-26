@@ -12,7 +12,7 @@
             </div>
             <div class="card-body p-5">
 
-                <form id="eventForm" class="form" asp-action="UpdateCampaign" asp-controller="Campaign" asp-route-id="@Model.CampaignId" asp-area="Admin" method="post">
+                <form class="form" asp-action="UpdateCampaign" asp-controller="Campaign" asp-route-id="@Model.CampaignId" asp-area="Admin" method="post">
                     <div class="row">
                         <div class="col-12 col-md-8 offset-md-2">
                             <div asp-validation-summary="All" class="text-danger ubuntu-bold list-no-style"></div>
@@ -23,13 +23,13 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Title" class="form-label text-gradient text-info ubuntu-bold">Title</label>
-                                <input asp-for="Title" value="@Model.Title" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Title"/>
+                                <input asp-for="Title" value="@Model?.Title" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Title"/>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Type" class="form-label text-gradient text-info ubuntu-bold">Type</label>
-                                <select asp-for="Type" id="Type" value="@Model.Type" class="form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                <select asp-for="Type" id="Type" value="@Model?.Type" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" >
                                     <option value="Individual">Individual</option>
                                     <option value="Enterprise">Enterprise</option>
                                     <option value="Family Owned">Family Owned</option>
@@ -42,7 +42,7 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Status" class="form-label text-gradient text-info ubuntu-bold">Status</label>
-                                <select asp-for="Status" value="@Model.Status" id="Status" class="form-select-lg bg-gradient-dark text-white ubuntu-bold bg-dark">
+                                <select asp-for="Status" value="@Model?.Status" id="Status" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" >
                                     <option value="Created">Created</option>
                                     <option value="Processing">Processing</option>
                                     <option value="Started">Started</option>
@@ -57,19 +57,19 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="StartDate" class="form-label text-gradient text-info ubuntu-bold">Start Date</label>
-                                @Html.TextBox("StartDate", Model.StartDate, Model.StartDate.ToString("d"), new {@class="form-control datepicker form-control-lg color-background bg-gradient-dark text-white ubuntu"})
+                                @Html.TextBox("StartDate", Model?.StartDate, Model?.StartDate.ToString("d"), new {@class="form-control datepicker form-control-lg color-background bg-gradient-dark text-white ubuntu"})
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="EndDate" class="form-label text-gradient text-info ubuntu-bold">End Date</label>
-                                @Html.TextBox("EndDate", Model.EndDate, Model.EndDate.ToString("d"), new {@class="form-control datepicker form-control-lg color-background bg-gradient-dark text-white ubuntu"})
+                                @Html.TextBox("EndDate", Model?.EndDate, Model?.EndDate.ToString("d"), new {@class="form-control datepicker form-control-lg color-background bg-gradient-dark text-white ubuntu"})
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Budget" class="form-label text-gradient text-info ubuntu-bold">Budget</label>
-                                <input asp-for="Budget" value="@Model.Budget" class="form-control color-background bg-gradient-dark" id="Budget">
+                                <input asp-for="Budget" value="@Model?.Budget" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="Budget">
                             </div>        
                         </div>
                     </div>
@@ -77,19 +77,19 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Spend" class="form-label text-gradient text-info ubuntu-bold">Spend</label>
-                                <input asp-for="Spend" value="@Model.Spend" class="form-control color-background bg-gradient-dark" id="Spend">
+                                <input asp-for="Spend" value="@Model?.Spend" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="Spend">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="TargetAudience" class="form-label text-gradient text-info ubuntu-bold">Target Audience</label>
-                                <input asp-for="TargetAudience" value="@Model.TargetAudience" class="form-control color-background bg-gradient-dark" id="TargetAudience">
+                                <input asp-for="TargetAudience" value="@Model?.TargetAudience" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="TargetAudience">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Channel" class="form-label text-gradient text-info ubuntu-bold">Channel</label>
-                                <input asp-for="Channel" value="@Model.Channel" class="form-control color-background bg-gradient-dark" id="Channel">
+                                <input asp-for="Channel" value="@Model?.Channel" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="Channel">
                             </div>
                         </div>
                     </div>
@@ -97,19 +97,19 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Goals" class="form-label text-gradient text-info ubuntu-bold">Goals</label>
-                                <input asp-for="Goals" value="@Model.Goals" class="form-control color-background bg-gradient-dark" id="Goals">
+                                <input asp-for="Goals" value="@Model?.Goals" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="Goals">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="RevenueTarget" class="form-label text-gradient text-info ubuntu-bold">Revenue Target</label>
-                                <input asp-for="RevenueTarget" value="@Model.RevenueTarget" class="form-control color-background bg-gradient-dark" id="RevenueTarget">
+                                <input asp-for="RevenueTarget" value="@Model?.RevenueTarget" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="RevenueTarget">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="ActualRevenue" class="form-label text-gradient text-info ubuntu-bold">Actual Revenue</label>
-                                <input asp-for="ActualRevenue" value="@Model.ActualRevenue" class="form-control color-background bg-gradient-dark" id="ActualRevenue">
+                                <input asp-for="ActualRevenue" value="@Model?.ActualRevenue" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="ActualRevenue">
                             </div>
                         </div>
                     </div>
@@ -117,19 +117,19 @@
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Impressions" class="form-label text-gradient text-info ubuntu-bold">Impressions</label>
-                                <input asp-for="Impressions" value="@Model.Impressions" class="form-control color-background bg-gradient-dark" id="Impressions">
+                                <input asp-for="Impressions" value="@Model?.Impressions" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="Impressions">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="Clicks" class="form-label text-gradient text-info ubuntu-bold">Clicks</label>
-                                <input asp-for="Clicks" value="@Model.Clicks" class="form-control color-background bg-gradient-dark" id="Clicks">
+                                <input asp-for="Clicks" value="@Model?.Clicks" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="Clicks">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="LeadsGenerated" class="form-label text-gradient text-info ubuntu-bold">Leads Generated</label>
-                                <input asp-for="LeadsGenerated" value="@Model.LeadsGenerated" class="form-control color-background bg-gradient-dark" id="LeadsGenerated">
+                                <input asp-for="LeadsGenerated" value="@Model?.LeadsGenerated" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="LeadsGenerated">
                             </div>
                         </div>
                     </div>
@@ -137,13 +137,13 @@
                         <div class="col-12 col-md-6">
                             <div class="form-group">
                                 <label asp-for="Conversions" class="form-label text-gradient text-info ubuntu-bold">Conversions</label>
-                                <input asp-for="Conversions" value="@Model.Conversions" class="form-control color-background bg-gradient-dark" id="Conversions">
+                                <input asp-for="Conversions" value="@Model?.Conversions" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="Conversions">
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
                             <div class="form-group">
                                 <label asp-for="ROI" class="form-label text-gradient text-info ubuntu-bold">Return On Investment</label>
-                                <input asp-for="ROI" value="@Model.ROI" class="form-control color-background bg-gradient-dark" id="ROI">
+                                <input asp-for="ROI" value="@Model?.ROI" class="form-control form-control-lg color-background bg-gradient-dark ubuntu-bold text-white" id="ROI">
                             </div>
                         </div>
                     </div>
@@ -151,12 +151,12 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label asp-for="Description" class="form-label text-gradient text-info ubuntu-bold">Description</label>
-                                @Html.TextArea("Description", Model.Description, new {@class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu", rows=5, cols=10})
+                                @Html.TextArea("Description", Model?.Description, new {@class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu", rows=5, cols=10})
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer mt-3 mb-3">
-                        <button type="submit" class="btn btn-primary" id="saveEventBtn">Add Product</button>
+                    <div class="mt-3 mb-3">
+                        <button type="submit" class="btn btn-primary">Update Campaign</button>
                     </div>
                 </form>
             </div>

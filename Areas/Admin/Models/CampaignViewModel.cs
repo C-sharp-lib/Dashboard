@@ -33,14 +33,12 @@ public class AddCampaignViewModel
     public int Conversions {  get; set; }
     [Precision(10,2)]
     public decimal ROI { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public AddCampaignViewModel()
-    {
-        CreatedAt = DateTime.Now;
-    }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 }
 
-public class AddCampaignUserNotesViewModel
+public class AddCampaignUserNotesViewModel : CampaignUserNotes
 {
     public int CampaignId { get; set; }
     public Campaigns Campaign { get; set; }
@@ -48,15 +46,12 @@ public class AddCampaignUserNotesViewModel
     public AppUser User { get; set; }
     public string NoteTitle { get; set; }
     public string NoteContent { get; set; }
-    public DateTime CreatedAt { get; set; }
-
-    public AddCampaignUserNotesViewModel()
-    {
-        CreatedAt = DateTime.Now;
-    }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 }
 
-public class AddCampaignUserTasksViewModel
+public class AddCampaignUserTasksViewModel : CampaignUserTasks
 {
     public int CampaignId { get; set; }
     public Campaigns Campaign { get; set; }
@@ -71,14 +66,12 @@ public class AddCampaignUserTasksViewModel
     [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
     [DataType(DataType.Date)]
     public DateTime EndDate { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public AddCampaignUserTasksViewModel()
-    {
-        CreatedAt = DateTime.Now;
-    }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
 }
 
-public class UpdateCampaignViewModel
+public class UpdateCampaignViewModel : Campaigns
 {
     public string Title { get; set; }
     public string Description { get; set; }
@@ -107,11 +100,9 @@ public class UpdateCampaignViewModel
     public int Conversions {  get; set; }
     [Precision(10,2)]
     public decimal ROI { get; set; }
-    public DateTime UpdatedAt { get; set; }
-    public UpdateCampaignViewModel()
-    {
-        UpdatedAt = DateTime.Now;
-    }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
 }
 
 public class UpdateCampaignUserNotesViewModel
@@ -122,12 +113,9 @@ public class UpdateCampaignUserNotesViewModel
     public AppUser User { get; set; }
     public string NoteTitle { get; set; }
     public string NoteContent { get; set; }
-    public DateTime UpdatedAt { get; set; }
-
-    public UpdateCampaignUserNotesViewModel()
-    {
-        UpdatedAt = DateTime.Now;
-    }
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
 }
 
 public class UpdateCampaignUserTasksViewModel
@@ -152,9 +140,8 @@ public class UpdateCampaignUserTasksViewModel
     [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
     [DataType(DataType.Date)]
     public DateTime EndDate { get; set; }
-    public DateTime UpdatedAt { get; set; }
-    public UpdateCampaignUserTasksViewModel()
-    {
-        UpdatedAt = DateTime.Now;
-    }
+
+    [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+    [DataType(DataType.Date)]
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
 }

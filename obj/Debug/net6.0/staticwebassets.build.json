@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "80CqrrUo/Gx+NfDNXx5z4Wgx6OV/94cgnuSY+h4hI5s=",
+  "Hash": "kXB7S58wmXiQOwXD44I048o2k+Cio4jtI0OdlgbYw1g=",
   "Source": "Dash",
   "BasePath": "_content/Dash",
   "Mode": "Default",
@@ -8940,6 +8940,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\scss\\soft-design-system-pro\\variables\\_virtual-reality.scss"
+    },
+    {
+      "Identity": "D:\\Development\\MVC\\Dash\\Dash\\wwwroot\\css\\colors.css",
+      "SourceId": "Dash",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Development\\MVC\\Dash\\Dash\\wwwroot\\",
+      "BasePath": "_content/Dash",
+      "RelativePath": "css/colors.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\colors.css"
     },
     {
       "Identity": "D:\\Development\\MVC\\Dash\\Dash\\wwwroot\\css\\site.css",

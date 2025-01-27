@@ -1,0 +1,115 @@
+﻿@model Dash.Areas.Admin.Models.AddJobsViewModel
+@{
+    Layout = "_Layout";
+}
+
+<div class="row mt-11 mb-11">
+    <div class="col-12 col-md-12 col-lg-8 offset-lg-2">
+        <div class="card shadow-lg bg-gradient-dark">
+            <div class="card-header bg-gradient-dark" style="display: flex; justify-content: space-between; align-items: center">
+                <h1 class="text-gradient text-warning ubuntu-bold">Add A Job</h1>
+                <a asp-action="Index" asp-controller="Job" asp-area="Admin" class="btn bg-gradient-info ubuntu-bold">Back To Dashboard</a>
+            </div>
+            <div class="card-body p-5">
+
+                <form class="form" asp-action="AddJob" asp-controller="Job" asp-area="Admin" method="post">
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Title" class="form-label text-gradient text-info ubuntu-bold">Title</label>
+                                <input asp-for="Title" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Title"/>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Type" class="form-label text-gradient text-info ubuntu-bold">Type</label>
+                                <select asp-for="Type" id="Type" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" >
+                                    <option value="Individual">Individual</option>
+                                    <option value="Enterprise">Enterprise</option>
+                                    <option value="Family Owned">Family Owned</option>
+                                    <option value="Sole Proprietor">Sole Proprietor</option>
+                                    <option value="Company">Company</option>
+                                    <option value="Undefined">Undefined</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Status" class="form-label text-gradient text-info ubuntu-bold">Status</label>
+                                <select asp-for="Status" id="Status" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" >
+                                    <option value="Created">Created</option>
+                                    <option value="Processing">Processing</option>
+                                    <option value="Started">Started</option>
+                                    <option value="Midway">Midway</option>
+                                    <option value="Finished">Finished</option>
+                                    <option value="Turned In">Turned In</option>
+                                </select>
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="StartDate" class="form-label text-gradient text-info ubuntu-bold">Start Date</label>
+                                <input asp-for="StartDate" class="datepicker form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="StartDate">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="EndDate" class="form-label text-gradient text-info ubuntu-bold">End Date</label>
+                                <input asp-for="EndDate" class="datepicker form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="EndDate">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Category" class="form-label text-gradient text-info ubuntu-bold">Category</label>
+                                <input asp-for="Category" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Category">
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Priority" class="form-label text-gradient text-info ubuntu-bold">Priority</label>
+                                <select asp-for="Priority" id="Priority" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" >
+                                    <option value="Low">Low</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="High">High</option>
+                                    <option value="Critical">Critical</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="EstimatedCost" class="form-label text-gradient text-info ubuntu-bold">Estimated Cost</label>
+                                <input asp-for="EstimatedCost" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="EstimatedCost">
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="form-group">
+                                <label asp-for="UserId" class="form-label text-gradient text-info ubuntu-bold">User</label>
+                                <select asp-for="UserId" id="UserId" class="form-select-lg form-control form-control-lg bg-gradient-dark text-white ubuntu-bold bg-dark" style="cursor: pointer;">
+                                    @foreach (var user in ViewBag.users)
+                                    {
+                                        <option value="@user.Id">@user.UserName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="form-label text-gradient text-info ubuntu-bold">Description</label>
+                                <textarea asp-for="Description" cols="10" rows="5" class="form-control form-control-lg color-background bg-gradient-dark text-white ubuntu" id="Description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer mt-3 mb-3">
+                        <button type="submit" class="btn btn-primary">Add Job</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

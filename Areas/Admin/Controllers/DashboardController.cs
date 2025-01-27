@@ -21,6 +21,7 @@ public class DashboardController : Controller
     private readonly IEventRepository _eventRepository;
     private readonly IProductRepository _productRepository;
     private readonly ICustomerRepository _customerRepository;
+    private readonly IJobRepository _jobRepository;
     private readonly ICampaignRepository _campaignRepository;
     private readonly ICampaignUserNoteRepository _campaignUserNoteRepository;
     private readonly ICampaignUserTaskRepository _campaignUserTaskRepository;
@@ -28,13 +29,14 @@ public class DashboardController : Controller
     public DashboardController(ApplicationDbContext context, IUserRepository userRepository, IEventRepository eventRepository, 
         IProductRepository productRepository, ICustomerRepository customerRepository, INotyfService notyfService, 
         ICampaignRepository campaignRepository, ICampaignUserNoteRepository campaignUserNoteRepository,
-        ICampaignUserTaskRepository campaignUserTaskRepository)
+        ICampaignUserTaskRepository campaignUserTaskRepository, IJobRepository jobRepository)
     {
         _context = context;
         _userRepository = userRepository;
         _eventRepository = eventRepository;
         _productRepository = productRepository;
         _customerRepository = customerRepository;
+        _jobRepository = jobRepository;
         _campaignRepository = campaignRepository;
         _campaignUserNoteRepository = campaignUserNoteRepository;
         _campaignUserTaskRepository = campaignUserTaskRepository;
@@ -75,9 +77,11 @@ public class DashboardController : Controller
             Events = await _eventRepository.GetAllEventsAsync(),
             Products = await _productRepository.GetAllProductsAsync(),
             Users = await _userRepository.GetAllUsersAsync(),
+            Jobs = await _jobRepository.GetAllJobsAsync(),
             Campaigns = await _campaignRepository.GetAllCampaignsAsync(),
             CampaignUserNotes = await _campaignUserNoteRepository.GetAllCampaignUserNotesAsync(),
             CampaignUserTasks = await _campaignUserTaskRepository.GetAllCampaignUserTasksAsync(),
+            JobCount = await _jobRepository.CountJobsAsync(),
             UserCount = GetUsers().Count,
             EventCount = GetEvents().Count,
             ProductCount = GetProducts().Count,

@@ -22,6 +22,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
     public DbSet<Campaigns> Campaigns { get; set; }
     public DbSet<CampaignUserNotes> CampaignUserNotes { get; set; }
     public DbSet<CampaignUserTasks> CampaignUserTasks { get; set; }
+    public DbSet<Jobs> Jobs { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -36,6 +37,7 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         builder.Entity<Campaigns>().HasKey(x => x.CampaignId);
         builder.Entity<CampaignUserTasks>().HasKey(x => new { x.UserId, x.CampaignId, x.CampaignUserTaskId });
         builder.Entity<CampaignUserNotes>().HasKey(x => new { x.UserId, x.CampaignId, x.CampaignUserNoteId });
+        builder.Entity<Jobs>().HasKey(x => new {x.JobId, x.UserId});
         builder.Entity<UserSchedules>()
             .HasOne(x => x.Schedule)
             .WithMany(x => x.UserSchedules)
@@ -67,6 +69,10 @@ public class ApplicationDbContext : IdentityDbContext<AppUser>
         builder.Entity<CampaignUserNotes>()
             .HasOne(x => x.User)
             .WithMany(x => x.CampaignUserNotes)
+            .HasForeignKey(x => x.UserId);
+        builder.Entity<Jobs>()
+            .HasOne(x => x.User)
+            .WithMany(x => x.Jobs)
             .HasForeignKey(x => x.UserId);
     }
 }

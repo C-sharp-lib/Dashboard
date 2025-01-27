@@ -26,4 +26,5 @@ public class AppUser : IdentityUser
     public IEnumerable<UserEvents> UserEvents { get; set; }
     public IEnumerable<CampaignUserNotes> CampaignUserNotes { get; set; }
     public IEnumerable<CampaignUserTasks> CampaignUserTasks { get; set; }
+    public IEnumerable<Jobs> Jobs { get; set; }
 }

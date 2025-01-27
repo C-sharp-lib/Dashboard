@@ -32,6 +32,7 @@ public class Program
         builder.Services.AddScoped<ICampaignRepository, CampaignRepository>();
         builder.Services.AddScoped<ICampaignUserNoteRepository, CampaignUserNoteRepository>();
         builder.Services.AddScoped<ICampaignUserTaskRepository, CampaignUserTaskRepository>();
+        builder.Services.AddScoped<IJobRepository, JobRepository>();
         builder.Services.AddNotyf(config =>
         {
             config.DurationInSeconds = 10;

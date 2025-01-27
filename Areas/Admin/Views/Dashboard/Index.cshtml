@@ -157,10 +157,10 @@
                 <div class="card card-stats bg-gradient-dark shadow-lg">
                     <div class="card-header bg-gradient-dark card-header-icon p-1">
                         <div class="card-icon bg-gradient-warning">
-                            <i class="fa-solid fa-list-check text-white"></i>
+                            <i class="fa-solid fa-briefcase text-white"></i>
                         </div>
-                        <p class="card-category text-white me-3 ubuntu-bold">Campaign Tasks</p>
-                        <h3 class="card-title text-gradient text-primary me-3 ubuntu-bold">@Model.CampaignUserTaskCount</h3>
+                        <p class="card-category text-white me-3 ubuntu-bold">Jobs</p>
+                        <h3 class="card-title text-gradient text-primary me-3 ubuntu-bold">@Model.JobCount</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -174,8 +174,8 @@
             <div class="col-12 col-md-4 mt-1">
                 <div class="card card-stats bg-gradient-dark shadow-lg">
                     <div class="card-header bg-gradient-dark card-header-icon p-1">
-                        <div class="card-icon bg-gradient-warning">
-                            <i class="fa-solid fa-briefcase text-white"></i>
+                        <div class="card-icon bg-gradient-secondary">
+                            <i class="fa-solid fa-list-check text-white"></i>
                         </div>
                         <p class="card-category text-white me-3 ubuntu-bold">Events</p>
                         <h3 class="card-title text-gradient text-primary me-3 ubuntu-bold">@Model.EventCount</h3>
@@ -365,6 +365,12 @@
                 data: {
                     labels: ['Totals Of Entities'],
                     datasets: [
+                        {
+                            label: 'Jobs',
+                            data: [@Model.JobCount],
+                            borderColor: 'darkorange',
+                            backgroundColor: 'darkorange'
+                        },
                         {
                             label: 'Campaigns',
                             data: [@Model.CampaignCount],
